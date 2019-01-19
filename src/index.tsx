@@ -1,21 +1,21 @@
+/// <reference path="./index.d.ts" />
 import * as React from "react";
 import { render } from "react-dom";
+import { Provider } from "react-redux";
 import ReduxStore from "./ReduxStore";
 const { dispatch, subscribe, getState } = ReduxStore;
 import { QuestionAnswer } from "./actions";
+import QuestionAnswerComponent from "./containers/QuestionAnswer";
 import "./styles.css";
-
 function App() {
   return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
+    <Provider store={ReduxStore}>
+      <div className="App">
+        <QuestionAnswerComponent />
+      </div>
+    </Provider>
   );
 }
-subscribe(() => {
-  console.log(getState());
-});
 
 dispatch(QuestionAnswer.get());
 
