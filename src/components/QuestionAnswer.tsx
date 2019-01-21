@@ -5,12 +5,9 @@ const QuestionAnswer = ({
   viewModel,
   onSelect
 }: ComponentArguments.IQuestionAnswer) => (
-  <div
-    onClick={() => {
-      onSelect(viewModel.id);
-    }}
-  >
-    {viewModel.questionModel.question}
+  <div>
+    <div>{viewModel.questionModel.question}</div>
+    <div>{viewModel.answerModel ? viewModel.answerModel.answer : ""} </div>
   </div>
 );
 
