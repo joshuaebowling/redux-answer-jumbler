@@ -50,6 +50,7 @@ declare namespace Infrastructure {
 declare namespace ComponentArguments {
   interface IQuestionAnswer {
     viewModel: Models.VMQuestionAnswer;
+    onSelect(): (id: number) => void;
   }
 }
 
@@ -61,9 +62,8 @@ declare namespace Actions {
     APPLY_ANSWER_RESPONSE: string;
     APPLY_QUESTION_REQUEST: string;
     APPLY_QUESTION_RESPONSE: string;
-    START_ANSWERING: string;
-    STOP_ANSWERING: string;
     get(): () => (dispatch: Function) => void;
-    startAnswering(): (answerId: number) => (dispatch: Function) => void;
+    applyAnswer(): (answerId: number) => (dispatch: Function) => void;
+    applyQuestion(): (answerId: number) => (dispatch: Function) => void;
   }
 }
