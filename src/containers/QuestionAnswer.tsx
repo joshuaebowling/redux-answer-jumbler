@@ -11,9 +11,11 @@ const mapStateToProps = (state: Infrastructure.IState) => ({
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    onQuestionClick: (questionId: number) =>
-      dispatch(applyQuestion(questionId)),
-    onAnswerClick: (answerId: number) => dispatch(applyAnswer(answerId))
+    onQuestionSelect: (questionId: number) => {
+      console.log("apply", applyQuestion);
+      dispatch(applyQuestion(questionId));
+    },
+    onAnswerSelect: (answerId: number) => dispatch(applyAnswer(answerId))
   };
 };
 

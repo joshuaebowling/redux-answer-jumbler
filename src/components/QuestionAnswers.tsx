@@ -3,25 +3,19 @@ import React from "react";
 import { map, each, values, chain, value } from "lodash";
 import QuestionAnswer from "./QuestionAnswer";
 import Answer from "./Answer";
+import { Droppable } from "@shopify/draggable";
 
 class QuestionAnswers extends React.Component {
-  constructor(props: Infrastructure.IQuestionAnswerProps) {
+  constructor(props: { collection: Array<Models.VMQuestionAnswer> }) {
     super(props);
-    this.questions = chain(props.collection)
-      .map(qa => (
-        <QuestionAnswer
-          key={qa.id}
-          onClick={props.onQuestionClick}
-          viewModel={qa}
-        />
-      ))
+    this.questions = chain(this.props.collection)
+      .map(qa => <QuestionAnswer key={qa.id} viewModel={qa} />)
       .value();
-    each(props.answerOrder, ao => console.log(props.collection[ao]));
-    this.answers = map(props.answerOrder, (a: number) => (
-      <Answer key={a} viewModel={props.collection[a]} />
+    each(this.props.answerOrder, ao => console.log(this.props.collection[ao]));
+    this.answers = map(this.props.answerOrder, (a: number) => (
+      <Answer key={a} viewModel={this.props.collection[a]} />
     ));
   }
-  componentWillUnmount() {}
   questions = [];
   answers = [];
   render() {

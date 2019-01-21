@@ -7,6 +7,8 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
   COLLECTION_RESPONSE: "COLLECTION_RESPONSE",
   APPLY_ANSWER_REQUEST: "APPLY_ANSWER_REQUEST",
   APPLY_ANSWER_RESPONSE: "APPLY_ANSWER_RESPONSE",
+  APPLY_QUESTION_REQUEST: "APPLY_ANSWER_REQUEST",
+  APPLY_QUESTION_RESPONSE: "APPLY_ANSWER_RESPONSE",
   START_ANSWERING: "START_ANSWERING",
   STOP_ANSWERING: "STOP_ANSWERING",
   get: () => (dispatch: Function) => {
@@ -29,9 +31,11 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
     });
   },
   applyAnswer: (answerId: number) => (dispatch: Function) => {
+    console.log("applyanswer");
     dispatch({ type: QuestionAnswer.APPLY_ANSWER_REQUEST, payload: answerId });
   },
   applyQuestion: (questionId: number) => (dispatch: Function) => {
+    console.log("applyQuesiton");
     dispatch({
       type: QuestionAnswer.APPLY_QUESTION_REQUEST,
       payload: questionId

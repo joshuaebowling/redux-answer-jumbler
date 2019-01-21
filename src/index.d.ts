@@ -32,8 +32,7 @@ declare namespace Infrastructure {
     results: object;
     isComplete: boolean;
     isLoaded: boolean;
-    currentAnswer: number;
-    currentQuestion: number;
+    currentAnswer: Models.VMQuestionAnswer;
   }
 
   interface IQuestionAnswerProps {
@@ -59,12 +58,9 @@ declare namespace Actions {
     APPLY_ANSWER_RESPONSE: string;
     APPLY_QUESTION_REQUEST: string;
     APPLY_QUESTION_RESPONSE: string;
+    START_ANSWERING: string;
+    STOP_ANSWERING: string;
     get(): () => (dispatch: Function) => void;
-    applyAnswer(
-      answerId: number
-    ): (answerId: number) => (dispatch: Function) => void;
-    applyQuestion(
-      questionId: number
-    ): (questionId: number) => (dispatch: Function) => void;
+    startAnswering(): (answerId: number) => (dispatch: Function) => void;
   }
 }
