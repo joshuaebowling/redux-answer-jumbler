@@ -37,6 +37,9 @@ declare namespace Infrastructure {
 
   interface IQuestionAnswerProps {
     collection: Array<Models.VMQuestionAnswer>;
+    answerOrder: Array<number>;
+    onAnswerSelect(): (answerId: number) => void;
+    onQuestionSelect(): (questionId: number) => void;
   }
 
   interface IUtilities {
