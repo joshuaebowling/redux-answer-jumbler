@@ -62,8 +62,8 @@ declare namespace Actions {
     APPLY_ANSWER_RESPONSE: string;
     APPLY_QUESTION_REQUEST: string;
     APPLY_QUESTION_RESPONSE: string;
-    get(): () => (dispatch: Function) => void;
-    applyAnswer(): (answerId: number) => (dispatch: Function) => void;
-    applyQuestion(): (answerId: number) => (dispatch: Function) => void;
+    get: () => (dispatch: Function) => void;
+    applyAnswer: (answerId: number) => (dispatch: Function) => void;
+    applyQuestion: (answerId: number) => (dispatch: Function) => void;
   }
 }

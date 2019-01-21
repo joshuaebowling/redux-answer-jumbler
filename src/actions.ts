@@ -9,8 +9,6 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
   APPLY_ANSWER_RESPONSE: "APPLY_ANSWER_RESPONSE",
   APPLY_QUESTION_REQUEST: "APPLY_ANSWER_REQUEST",
   APPLY_QUESTION_RESPONSE: "APPLY_ANSWER_RESPONSE",
-  START_ANSWERING: "START_ANSWERING",
-  STOP_ANSWERING: "STOP_ANSWERING",
   get: () => (dispatch: Function) => {
     dispatch({ type: QuestionAnswer.COLLECTION_REQUEST, payload: null });
     const collection = qaService();
