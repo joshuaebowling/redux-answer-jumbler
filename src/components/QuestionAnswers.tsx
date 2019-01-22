@@ -15,14 +15,17 @@ class QuestionAnswers extends React.Component {
     this.answers = map(this.props.answerOrder, (a: number) => (
       <Answer key={a} viewModel={this.props.collection[a]} />
     ));
+    this.results = map();
   }
   questions = [];
   answers = [];
+  results = [];
   render() {
     return (
-      <div className="qa-container row">
-        <div className="col-md-3">{this.questions}</div>
-        <div className="col-md-3">{this.answers}</div>
+      <div className="wrapper">
+        <div className="box">{this.questions}</div>
+        <div className="box">{this.results}</div>
+        <div className="box">{this.answers}</div>
       </div>
     );
   }
