@@ -17,10 +17,10 @@
 }
 
 .wrapper {
-  width: 300px;
+  width: 900px;
   display: grid;
   grid-gap: 5px;
-  grid-template-columns: repeat(2, 150px);
+  grid-template-columns: repeat(3, 200px);
   height: 500px;
   overflow-y: hidden;
   overflow-x: hidden;

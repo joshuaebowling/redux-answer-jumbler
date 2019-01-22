@@ -15,7 +15,9 @@ class QuestionAnswers extends React.Component {
     this.answers = map(this.props.answerOrder, (a: number) => (
       <Answer key={a} viewModel={this.props.collection[a]} />
     ));
-    this.results = map();
+    this.results = map(this.props.results, result => (
+      <div>JSON.stringify(result)</div>
+    ));
   }
   questions = [];
   answers = [];
