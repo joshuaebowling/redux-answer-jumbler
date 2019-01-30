@@ -23,7 +23,7 @@ declare namespace Services {
 declare namespace Infrastructure {
   class Action {
     type: string;
-    payload: object;
+    payload: object | number;
   }
 
   interface IState {

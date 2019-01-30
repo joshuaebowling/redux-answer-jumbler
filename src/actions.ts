@@ -33,7 +33,7 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
     dispatch({ type: QuestionAnswer.APPLY_ANSWER_REQUEST, payload: answerId });
   },
   applyQuestion: (questionId: number) => (dispatch: Function) => {
-    console.log("applyQuesiton");
+    console.log("applyQuesiton", questionId);
     dispatch({
       type: QuestionAnswer.APPLY_QUESTION_REQUEST,
       payload: questionId

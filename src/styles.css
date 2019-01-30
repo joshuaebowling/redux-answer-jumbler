@@ -28,3 +28,11 @@
 .wrapper:hover {
   overflow-y: auto;
 }
+
+.current-answer {
+  color: red;
+}
+
+.current-question {
+  color: red;
+}

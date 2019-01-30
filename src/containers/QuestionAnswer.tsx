@@ -7,10 +7,10 @@ const { applyAnswer, applyQuestion } = actions;
 
 const mapStateToProps = (state: Infrastructure.IState) => ({
   collection: state.collection,
-  answerOrder: state.answerOrder
+  answerOrder: state.answerOrder,
+  results: state.results
 });
 
-console.log(actions);
 const mapDispatchToProps = (dispatch: Function) => {
   return {
     onQuestionSelect: (questionId: number) => {

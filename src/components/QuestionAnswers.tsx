@@ -28,6 +28,9 @@ class QuestionAnswers extends React.Component {
       <div>JSON.stringify(result)</div>
     ));
   }
+  componentWillUpdate(prevState, currState) {
+    console.log(arguments);
+  }
   questions = [];
   answers = [];
   results = [];

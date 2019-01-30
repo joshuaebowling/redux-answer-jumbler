@@ -20,13 +20,21 @@ const initialState: Infrastructure.IState = {
 
 const applyAnswerToQuestion = (
   state: Infrastructure.IState,
-  stateAddition: object
+  stateAddition: object,
+  answerId: number = 0,
+  questionId: number = 0
 ) => {
-  if (state.currentAnswer !== 0 && state.currentQuestion !== 0)
+  const currentAnswer = answerId === 0 ? state.currentAnswer : answerId;
+  const currentQuestion: number =
+    questionId === 0 ? state.currentQuestion : questionId;
+  console.log("ca=", currentAnswer);
+  console.log("cq=", currentQuestion);
+  if (currentAnswer !== 0 && currentQuestion !== 0) {
     stateAddition.results = {
       ...state.results,
       [state.currentQuestion]: state.currentAnswer
     };
+  }
 };
 export default (
   state: Infrastructure.IState = initialState,
@@ -43,13 +51,13 @@ export default (
       break;
     case APPLY_ANSWER_REQUEST:
       stateAddition.currentAnswer = action.payload;
-      applyAnswerToQuestion(state, stateAddition);
+      applyAnswerToQuestion(state, stateAddition, action.payload, 0);
       break;
     case APPLY_ANSWER_RESPONSE:
       break;
     case APPLY_QUESTION_REQUEST:
-      stateAddition.currentAnswer = action.payload;
-      applyAnswerToQuestion(state, stateAddition);
+      stateAddition.currentQuestion = action.payload;
+      applyAnswerToQuestion(state, stateAddition, 0, action.payload);
       break;
     case APPLY_QUESTION_RESPONSE:
       break;
