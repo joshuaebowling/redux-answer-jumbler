@@ -7,8 +7,8 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
   COLLECTION_RESPONSE: "COLLECTION_RESPONSE",
   APPLY_ANSWER_REQUEST: "APPLY_ANSWER_REQUEST",
   APPLY_ANSWER_RESPONSE: "APPLY_ANSWER_RESPONSE",
-  APPLY_QUESTION_REQUEST: "APPLY_ANSWER_REQUEST",
-  APPLY_QUESTION_RESPONSE: "APPLY_ANSWER_RESPONSE",
+  APPLY_QUESTION_REQUEST: "APPLY_QUESTION_REQUEST",
+  APPLY_QUESTION_RESPONSE: "APPLY_QUESTION_RESPONSE",
   get: () => (dispatch: Function) => {
     dispatch({ type: QuestionAnswer.COLLECTION_REQUEST, payload: null });
     const collection = qaService();
@@ -32,11 +32,13 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
     console.log("applyanswer");
     dispatch({ type: QuestionAnswer.APPLY_ANSWER_REQUEST, payload: answerId });
   },
-  applyQuestion: (questionId: number) => (dispatch: Function) => {
-    console.log("applyQuesiton", questionId);
-    dispatch({
-      type: QuestionAnswer.APPLY_QUESTION_REQUEST,
-      payload: questionId
-    });
+  applyQuestion: (questionId: number) => {
+    return (dispatch: Function) => {
+      console.log("in dispatch", questionId);
+      dispatch({
+        type: QuestionAnswer.APPLY_QUESTION_REQUEST,
+        payload: questionId
+      });
+    };
   }
 };

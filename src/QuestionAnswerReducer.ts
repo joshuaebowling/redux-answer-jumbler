@@ -28,11 +28,11 @@ const applyAnswerToQuestion = (
   const currentQuestion: number =
     questionId === 0 ? state.currentQuestion : questionId;
   console.log("ca=", currentAnswer);
-  console.log("cq=", currentQuestion);
+  console.log("cq=", currentQuestion, questionId);
   if (currentAnswer !== 0 && currentQuestion !== 0) {
     stateAddition.results = {
       ...state.results,
-      [state.currentQuestion]: state.currentAnswer
+      [currentQuestion]: currentAnswer
     };
   }
 };
@@ -41,6 +41,8 @@ export default (
   action: Infrastructure.Action
 ) => {
   const stateAddition: object = {};
+  console.log("questionpayload", APPLY_QUESTION_REQUEST);
+
   switch (action.type) {
     case COLLECTION_REQUEST:
       break;

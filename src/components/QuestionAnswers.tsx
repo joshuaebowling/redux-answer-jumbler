@@ -25,11 +25,11 @@ class QuestionAnswers extends React.Component {
       />
     ));
     this.results = map(this.props.results, result => (
-      <div>JSON.stringify(result)</div>
+      <div>{JSON.stringify(result)}</div>
     ));
   }
   componentWillUpdate(prevState, currState) {
-    console.log(arguments);
+    console.log("currstate", prevState);
   }
   questions = [];
   answers = [];
