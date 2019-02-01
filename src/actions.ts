@@ -9,6 +9,7 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
   APPLY_ANSWER_RESPONSE: "APPLY_ANSWER_RESPONSE",
   APPLY_QUESTION_REQUEST: "APPLY_QUESTION_REQUEST",
   APPLY_QUESTION_RESPONSE: "APPLY_QUESTION_RESPONSE",
+  CLEAR_RESULTS: "CLEAR_RESULTS",
   get: () => (dispatch: Function) => {
     dispatch({ type: QuestionAnswer.COLLECTION_REQUEST, payload: null });
     const collection = qaService();
@@ -34,11 +35,14 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
   },
   applyQuestion: (questionId: number) => {
     return (dispatch: Function) => {
-      console.log("in dispatch", questionId);
       dispatch({
         type: QuestionAnswer.APPLY_QUESTION_REQUEST,
         payload: questionId
       });
     };
+  },
+  clearAllResults: () => (dispatch: Function) => {
+    console.log("clear all results");
+    dispatch({ type: QuestionAnswer.CLEAR_RESULTS, payload: null });
   }
 };

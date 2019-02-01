@@ -7,7 +7,8 @@ const {
   APPLY_ANSWER_REQUEST,
   APPLY_ANSWER_RESPONSE,
   APPLY_QUESTION_REQUEST,
-  APPLY_QUESTION_RESPONSE
+  APPLY_QUESTION_RESPONSE,
+  CLEAR_RESULTS
 } = QuestionAnswer;
 const initialState: Infrastructure.IState = {
   collection: {},
@@ -28,12 +29,14 @@ const applyAnswerToQuestion = (
   const currentQuestion: number =
     questionId === 0 ? state.currentQuestion : questionId;
   console.log("ca=", currentAnswer);
-  console.log("cq=", currentQuestion, questionId);
+  console.log("cq=", currentQuestion);
   if (currentAnswer !== 0 && currentQuestion !== 0) {
     stateAddition.results = {
       ...state.results,
       [currentQuestion]: currentAnswer
     };
+    stateAddition.currentQuestion = 0;
+    stateAddition.currentAnswer = 0;
   }
 };
 export default (
@@ -41,8 +44,6 @@ export default (
   action: Infrastructure.Action
 ) => {
   const stateAddition: object = {};
-  console.log("questionpayload", APPLY_QUESTION_REQUEST);
-
   switch (action.type) {
     case COLLECTION_REQUEST:
       break;
@@ -62,6 +63,9 @@ export default (
       applyAnswerToQuestion(state, stateAddition, 0, action.payload);
       break;
     case APPLY_QUESTION_RESPONSE:
+      break;
+    case CLEAR_RESULTS:
+      stateAddition.results = {};
       break;
     default:
       break;
