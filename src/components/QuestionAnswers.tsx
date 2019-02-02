@@ -39,6 +39,16 @@ class QuestionAnswers extends React.Component {
   }
   renderResults(resultsData: Array<object>) {
     console.log(resultsData);
+    this.results = map(resultsData, (val, key) => {
+      return (
+        <Result
+          answerModel={this.props.collection[val].questionModel}
+          questionModel={this.props.collection[key].questionModel}
+          onDeSelect={this.props.removeResult}
+          key={key}
+        />
+      );
+    });
   }
 
   questions = [];

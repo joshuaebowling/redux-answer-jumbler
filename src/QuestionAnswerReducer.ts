@@ -1,5 +1,5 @@
 /// <reference path="./index.d.ts" />
-import { assign } from "lodash";
+import { assign, omit } from "lodash";
 import { QuestionAnswer } from "./actions";
 const {
   COLLECTION_RESPONSE,
@@ -8,7 +8,8 @@ const {
   APPLY_ANSWER_RESPONSE,
   APPLY_QUESTION_REQUEST,
   APPLY_QUESTION_RESPONSE,
-  CLEAR_RESULTS
+  CLEAR_RESULTS,
+  REMOVE_RESULT
 } = QuestionAnswer;
 const initialState: Infrastructure.IState = {
   collection: {},
@@ -66,6 +67,9 @@ export default (
       break;
     case CLEAR_RESULTS:
       stateAddition.results = {};
+      break;
+    case REMOVE_RESULT:
+      stateAddition.results = omit(state.results, action.payload);
       break;
     default:
       break;

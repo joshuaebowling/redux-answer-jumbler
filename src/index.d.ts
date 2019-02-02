@@ -62,10 +62,12 @@ declare namespace Actions {
     APPLY_ANSWER_RESPONSE: string;
     APPLY_QUESTION_REQUEST: string;
     APPLY_QUESTION_RESPONSE: string;
+    REMOVE_RESULT: string;
     CLEAR_RESULTS: string;
     get: () => (dispatch: Function) => void;
     applyAnswer: (answerId: number) => (dispatch: Function) => void;
     applyQuestion: (answerId: number) => (dispatch: Function) => void;
     clearAllResults: () => (dispatch: Function) => void;
+    removeResult: (id: number) => (dispatch: Function) => void;
   }
 }

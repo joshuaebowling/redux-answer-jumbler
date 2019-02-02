@@ -8,6 +8,7 @@ const Result = ({
 }: ComponentArguments.IQuestionAnswer) => (
   <div>
     <span>{questionModel.question}</span>/<span>{answerModel.answer} </span>
+    <button onClick={() => onDeSelect(questionModel.id)}>x</button>
   </div>
 );
 
