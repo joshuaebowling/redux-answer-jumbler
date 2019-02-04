@@ -4,13 +4,16 @@ declare namespace Models {
     answer: string;
     id: number;
   }
-
+  interface IModelAvailability {
+    used: string;
+    available: string;
+    selected: string;
+  }
   class VMQuestionAnswer {
     questionModel: QuestionAnswer;
     answerModel: QuestionAnswer;
-    isAnswered: boolean;
+    availability: string;
     id: number;
-    onReceiveAnswer: () => void;
   }
 }
 
@@ -51,6 +54,7 @@ declare namespace ComponentArguments {
   interface IQuestionAnswer {
     viewModel: Models.VMQuestionAnswer;
     onSelect(): (id: number) => void;
+    stateClass: string;
   }
 }
 

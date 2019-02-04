@@ -1,15 +1,13 @@
 /// <reference path="./index.d.ts" />
+import { ModelAvailability } from "./constants";
+
 const Utilities: Infrastructure.IUtilities = {
-  createViewModel: (
-    model: Models.QuestionAnswer,
-    onReceiveAnswer: () => void
-  ) => {
+  createViewModel: (model: Models.QuestionAnswer) => {
     const viewModel: Models.VMQuestionAnswer = {
-      isAnswered: false,
+      availability: ModelAvailability.available,
       questionModel: model,
       answerModel: null,
-      id: model.id,
-      onReceiveAnswer
+      id: model.id
     };
     return viewModel;
   }

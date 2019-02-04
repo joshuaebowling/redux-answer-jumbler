@@ -7,19 +7,40 @@ import Question from "./Question";
 import Result from "./Result";
 import ClearAllResults from "./ClearAllResults";
 class QuestionAnswers extends React.Component {
-  constructor(props: { collection: Array<Models.VMQuestionAnswer> }) {
+  constructor(props: {
+    collection: Array<Models.VMQuestionAnswer>;
+    answerOrder: Array<number>;
+    results: object;
+  }) {
     super(props);
     this.renderResults = this.renderResults.bind(this);
     this.clearAllResults = this.clearAllResults.bind(this);
+    this.renderQuestions = this.renderQuestions.bind(this);
+    this.renderAnswers = this.renderAnswers.bind(this);
+    this.renderQuestions();
+    this.renderAnswers();
+  }
+  componentWillUpdate(prevState, currState) {
+    this.renderResults(prevState.results);
+    this.renderQuestions();
+    this.renderAnswers();
+  }
+  clearAllResults() {
+    this.props.clearAllResults();
+  }
+  renderQuestions() {
     this.questions = chain(this.props.collection)
       .map(qa => (
         <Question
           key={qa.id}
           viewModel={qa}
           onSelect={this.props.onQuestionSelect}
+          classState=""
         />
       ))
       .value();
+  }
+  renderAnswers() {
     this.answers = map(this.props.answerOrder, (a: number) => (
       <Answer
         key={a}
@@ -27,18 +48,8 @@ class QuestionAnswers extends React.Component {
         onSelect={this.props.onAnswerSelect}
       />
     ));
-    this.results = map(this.props.results, result => (
-      <div>{JSON.stringify(result)}</div>
-    ));
-  }
-  componentWillUpdate(prevState, currState) {
-    this.renderResults(prevState.results);
-  }
-  clearAllResults() {
-    this.props.clearAllResults();
   }
   renderResults(resultsData: Array<object>) {
-    console.log(resultsData);
     this.results = map(resultsData, (val, key) => {
       return (
         <Result
