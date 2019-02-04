@@ -1,6 +1,7 @@
 /// <reference path="./index.d.ts" />
 import { assign, omit, each } from "lodash";
 import { QuestionAnswer } from "./actions";
+import { ModelAvailability } from "./constants";
 const {
   COLLECTION_RESPONSE,
   COLLECTION_REQUEST,
@@ -36,6 +37,10 @@ const applyAnswerToQuestion = (
     };
     stateAddition.currentQuestion = 0;
     stateAddition.currentAnswer = 0;
+    stateAddition.collection[currentQuestion].questionAvailability =
+      ModelAvailability.used;
+    stateAddition.collection[currentAnswer].answerAvailability =
+      ModelAvailability.used;
   }
 };
 export default (
