@@ -1,6 +1,6 @@
 /// <reference path="../index.d.ts" />
 import React from "react";
-import { map, each, values, chain, value } from "lodash";
+import { map, each, values, chain, value, partial } from "lodash";
 import QuestionAnswer from "./QuestionAnswer";
 import Answer from "./Answer";
 import Question from "./Question";
@@ -17,19 +17,20 @@ class QuestionAnswers extends React.Component {
     this.clearAllResults = this.clearAllResults.bind(this);
     this.renderQuestions = this.renderQuestions.bind(this);
     this.renderAnswers = this.renderAnswers.bind(this);
-    this.renderQuestions();
-    this.renderAnswers();
+    this.renderAnswers = partial(this.renderAnswers, props.answerOrder);
+    this.renderQuestions(props.collection);
+    this.renderAnswers(props.collection);
   }
-  componentWillUpdate(prevState, currState) {
-    this.renderResults(prevState.results);
-    this.renderQuestions();
-    this.renderAnswers();
+  componentWillUpdate(state) {
+    this.renderResults(state.results);
+    this.renderQuestions(state.collection);
+    this.renderAnswers(state.collection);
   }
   clearAllResults() {
     this.props.clearAllResults();
   }
-  renderQuestions() {
-    this.questions = chain(this.props.collection)
+  renderQuestions(collection: Array<Models.VMQuestionAnswer>) {
+    this.questions = chain(collection)
       .map(qa => (
         <Question
           key={qa.id}
@@ -40,8 +41,12 @@ class QuestionAnswers extends React.Component {
       ))
       .value();
   }
-  renderAnswers() {
-    this.answers = map(this.props.answerOrder, (a: number) => (
+  renderAnswers(
+    answerOrder: object,
+    collection: Array<Models.VMQuestionAnswer>
+  ) {
+    console.log("ao=", answerOrder);
+    this.answers = map(answerOrder, (a: number) => (
       <Answer
         key={a}
         viewModel={this.props.collection[a]}
