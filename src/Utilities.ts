@@ -4,7 +4,8 @@ import { ModelAvailability } from "./constants";
 const Utilities: Infrastructure.IUtilities = {
   createViewModel: (model: Models.QuestionAnswer) => {
     const viewModel: Models.VMQuestionAnswer = {
-      availability: ModelAvailability.available,
+      questionAvailability: ModelAvailability.available,
+      answerAvailability: ModelAvailability.available,
       questionModel: model,
       answerModel: null,
       id: model.id

@@ -36,3 +36,11 @@
 .current-question {
   color: red;
 }
+
+.selected {
+  border: 1px solid white;
+}
+
+.used {
+  color: #999;
+}

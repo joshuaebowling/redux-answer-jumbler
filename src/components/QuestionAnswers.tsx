@@ -36,7 +36,7 @@ class QuestionAnswers extends React.Component {
           key={qa.id}
           viewModel={qa}
           onSelect={this.props.onQuestionSelect}
-          classState=""
+          stateClass={qa.questionAvailability}
         />
       ))
       .value();
@@ -45,12 +45,12 @@ class QuestionAnswers extends React.Component {
     answerOrder: object,
     collection: Array<Models.VMQuestionAnswer>
   ) {
-    console.log("ao=", answerOrder);
     this.answers = map(answerOrder, (a: number) => (
       <Answer
         key={a}
-        viewModel={this.props.collection[a]}
+        viewModel={collection[a]}
         onSelect={this.props.onAnswerSelect}
+        stateClass={collection[a].answerAvailability}
       />
     ));
   }

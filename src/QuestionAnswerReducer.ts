@@ -1,5 +1,5 @@
 /// <reference path="./index.d.ts" />
-import { assign, omit } from "lodash";
+import { assign, omit, each } from "lodash";
 import { QuestionAnswer } from "./actions";
 const {
   COLLECTION_RESPONSE,
@@ -29,8 +29,6 @@ const applyAnswerToQuestion = (
   const currentAnswer = answerId === 0 ? state.currentAnswer : answerId;
   const currentQuestion: number =
     questionId === 0 ? state.currentQuestion : questionId;
-  console.log("ca=", currentAnswer);
-  console.log("cq=", currentQuestion);
   if (currentAnswer !== 0 && currentQuestion !== 0) {
     stateAddition.results = {
       ...state.results,
@@ -55,12 +53,28 @@ export default (
       break;
     case APPLY_ANSWER_REQUEST:
       stateAddition.currentAnswer = action.payload;
+      stateAddition.collection = assign({}, state.collection);
+      each(stateAddition.collection, qa => {
+        if (qa.answerAvailability === "selected") {
+          qa.answerAvailability = "available";
+        }
+      });
+      stateAddition.collection[action.payload].answerAvailability = "selected";
       applyAnswerToQuestion(state, stateAddition, action.payload, 0);
       break;
     case APPLY_ANSWER_RESPONSE:
       break;
     case APPLY_QUESTION_REQUEST:
       stateAddition.currentQuestion = action.payload;
+      stateAddition.collection = assign({}, state.collection);
+      each(stateAddition.collection, qa => {
+        if (qa.questionAvailability === "selected") {
+          qa.questionAvailability = "available";
+        }
+      });
+
+      stateAddition.collection[action.payload].questionAvailability =
+        "selected";
       applyAnswerToQuestion(state, stateAddition, 0, action.payload);
       break;
     case APPLY_QUESTION_RESPONSE:

@@ -12,7 +12,8 @@ declare namespace Models {
   class VMQuestionAnswer {
     questionModel: QuestionAnswer;
     answerModel: QuestionAnswer;
-    availability: string;
+    questionAvailability: "used" | "available" | "selected";
+    answerAvailability: "used" | "available" | "selected";
     id: number;
   }
 }
