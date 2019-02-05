@@ -18,11 +18,5 @@ function App() {
 }
 
 dispatch(QuestionAnswer.get());
-subscribe(() => {
-  var s = getState();
-  console.log(s.currentAnswer);
-  console.log(s.currentQuestion);
-  console.log(s.results);
-});
 const rootElement = document.getElementById("root");
 render(<App />, rootElement);

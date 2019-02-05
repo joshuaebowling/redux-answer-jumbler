@@ -43,6 +43,7 @@ const applyAnswerToQuestion = (
       ModelAvailability.used;
   }
 };
+
 export default (
   state: Infrastructure.IState = initialState,
   action: Infrastructure.Action
@@ -86,9 +87,25 @@ export default (
       break;
     case CLEAR_RESULTS:
       stateAddition.results = {};
+      stateAddition.collection = assign({}, state.collection);
+      each(stateAddition.collection, qa => {
+        qa.answerAvailability = ModelAvailability.available;
+        qa.questionAvailability = ModelAvailability.available;
+      });
       break;
     case REMOVE_RESULT:
+      let foundAnswer = state.results[action.payload];
+      stateAddition.collection = assign({}, state.collection);
+      each(stateAddition.collection, qa => {
+        if (qa.id === foundAnswer) {
+          qa.answerAvailability = ModelAvailability.available;
+        }
+        if (qa.id === action.payload) {
+          qa.questionAvailability = ModelAvailability.available;
+        }
+      });
       stateAddition.results = omit(state.results, action.payload);
+
       break;
     default:
       break;

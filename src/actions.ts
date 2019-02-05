@@ -31,7 +31,6 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
     });
   },
   applyAnswer: (answerId: number) => (dispatch: Function) => {
-    console.log("applyanswer");
     dispatch({ type: QuestionAnswer.APPLY_ANSWER_REQUEST, payload: answerId });
   },
   applyQuestion: (questionId: number) => {
@@ -46,7 +45,6 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
     dispatch({ type: QuestionAnswer.CLEAR_RESULTS, payload: null });
   },
   removeResult: (id: number) => (dispatch: Function) => {
-    console.log("removeresult", id);
     dispatch({ type: QuestionAnswer.REMOVE_RESULT, payload: id });
   }
 };

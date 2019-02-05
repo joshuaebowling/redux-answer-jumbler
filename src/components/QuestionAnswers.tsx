@@ -31,14 +31,16 @@ class QuestionAnswers extends React.Component {
   }
   renderQuestions(collection: Array<Models.VMQuestionAnswer>) {
     this.questions = chain(collection)
-      .map(qa => (
-        <Question
-          key={qa.id}
-          viewModel={qa}
-          onSelect={this.props.onQuestionSelect}
-          stateClass={qa.questionAvailability}
-        />
-      ))
+      .map(qa => {
+        return (
+          <Question
+            key={qa.id}
+            viewModel={qa}
+            onSelect={this.props.onQuestionSelect}
+            stateClass={qa.questionAvailability}
+          />
+        );
+      })
       .value();
   }
   renderAnswers(

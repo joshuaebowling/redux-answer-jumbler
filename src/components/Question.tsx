@@ -1,5 +1,6 @@
 /// <reference path="../index.d.ts" />
 import React from "react";
+import { ModelAvailability } from "../constants";
 
 const QuestionAnswer = ({
   viewModel,
@@ -8,7 +9,12 @@ const QuestionAnswer = ({
 }: ComponentArguments.IQuestionAnswer) => (
   <div
     onClick={() => {
-      onSelect(viewModel.id);
+      if (stateClass === ModelAvailability.available) {
+        console.log("available ");
+        onSelect(viewModel.id);
+      } else {
+        console.log("not available");
+      }
     }}
     className={stateClass}
   >
