@@ -69,10 +69,12 @@ declare namespace Actions {
     APPLY_QUESTION_RESPONSE: string;
     REMOVE_RESULT: string;
     CLEAR_RESULTS: string;
+    GRADE_REQUEST: string;
     get: () => (dispatch: Function) => void;
     applyAnswer: (answerId: number) => (dispatch: Function) => void;
     applyQuestion: (answerId: number) => (dispatch: Function) => void;
     clearAllResults: () => (dispatch: Function) => void;
     removeResult: (id: number) => (dispatch: Function) => void;
+    grade: () => (dispatch: Function) => void;
   }
 }
