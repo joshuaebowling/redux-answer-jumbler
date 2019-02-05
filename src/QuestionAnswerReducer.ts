@@ -10,7 +10,8 @@ const {
   APPLY_QUESTION_REQUEST,
   APPLY_QUESTION_RESPONSE,
   CLEAR_RESULTS,
-  REMOVE_RESULT
+  REMOVE_RESULT,
+  GRADE_REQUEST
 } = QuestionAnswer;
 const initialState: Infrastructure.IState = {
   collection: {},
@@ -105,7 +106,12 @@ export default (
         }
       });
       stateAddition.results = omit(state.results, action.payload);
-
+      break;
+    case GRADE_REQUEST:
+      let correctCount: number = 0;
+      each(state.results, (qid, aid) => {
+        if (qid === aid) ++correctCount;
+      });
       break;
     default:
       break;

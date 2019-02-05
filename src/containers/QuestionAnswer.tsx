@@ -3,7 +3,13 @@ import { connect } from "react-redux";
 import { QuestionAnswer as actions } from "../actions";
 import { values } from "lodash";
 import QuestionAnswers from "../components/QuestionAnswers";
-const { applyAnswer, applyQuestion, clearAllResults, removeResult } = actions;
+const {
+  applyAnswer,
+  applyQuestion,
+  clearAllResults,
+  removeResult,
+  grade
+} = actions;
 
 const mapStateToProps = (state: Infrastructure.IState) => ({
   collection: state.collection,
@@ -18,7 +24,8 @@ const mapDispatchToProps = (dispatch: Function) => {
     },
     onAnswerSelect: (answerId: number) => dispatch(applyAnswer(answerId)),
     clearAllResults: () => dispatch(clearAllResults()),
-    removeResult: (id: number) => dispatch(removeResult(id))
+    removeResult: (id: number) => dispatch(removeResult(id)),
+    grade: () => dispatch(grade)
   };
 };
 

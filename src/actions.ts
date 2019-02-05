@@ -11,6 +11,7 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
   APPLY_QUESTION_RESPONSE: "APPLY_QUESTION_RESPONSE",
   CLEAR_RESULTS: "CLEAR_RESULTS",
   REMOVE_RESULT: "REMOVE_RESULT",
+  GRADE_REQUEST: "GRADE_REQUEST",
   get: () => (dispatch: Function) => {
     dispatch({ type: QuestionAnswer.COLLECTION_REQUEST, payload: null });
     const collection = qaService();
@@ -46,5 +47,8 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
   },
   removeResult: (id: number) => (dispatch: Function) => {
     dispatch({ type: QuestionAnswer.REMOVE_RESULT, payload: id });
+  },
+  grade: () => (dispatch: Function) => {
+    dispatch({ type: QuestionAnswer.GRADE_REQUEST, payload: null });
   }
 };

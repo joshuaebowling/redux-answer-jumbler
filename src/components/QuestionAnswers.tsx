@@ -81,6 +81,7 @@ class QuestionAnswers extends React.Component {
           <div className="box">{this.answers}</div>
         </div>
         <ClearAllResults clearResults={this.props.clearAllResults} />
+        <button onClick={this.props.grade}>Score</button>
       </div>
     );
   }
