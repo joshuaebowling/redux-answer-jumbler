@@ -2,6 +2,9 @@
 import { assign, omit, each } from "lodash";
 import { QuestionAnswer } from "./actions";
 import { ModelAvailability } from "./constants";
+import Utility from "./Utilities";
+const { gradeResults } = Utility;
+
 const {
   COLLECTION_RESPONSE,
   COLLECTION_REQUEST,
@@ -112,6 +115,9 @@ export default (
       each(state.results, (qid, aid) => {
         if (qid === aid) ++correctCount;
       });
+      stateAddition.results = assign({}, state.results);
+      stateAddition.collection = assign({}, state.collection);
+      gradeResults(stateAddition.collection, stateAddition.results);
       break;
     default:
       break;

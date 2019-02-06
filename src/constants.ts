@@ -2,5 +2,7 @@
 export const ModelAvailability: Models.IModelAvailability = {
   used: "used",
   selected: "selected",
-  available: "available"
+  available: "available",
+  correct: "correct",
+  incorrect: "incorrect"
 };

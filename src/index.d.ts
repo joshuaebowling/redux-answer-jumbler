@@ -8,12 +8,24 @@ declare namespace Models {
     used: string;
     available: string;
     selected: string;
+    correct: string;
+    incorrect: string;
   }
   class VMQuestionAnswer {
     questionModel: QuestionAnswer;
     answerModel: QuestionAnswer;
-    questionAvailability: "used" | "available" | "selected";
-    answerAvailability: "used" | "available" | "selected";
+    questionAvailability:
+      | "used"
+      | "available"
+      | "selected"
+      | "correct"
+      | "incorrect";
+    answerAvailability:
+      | "used"
+      | "available"
+      | "selected"
+      | "correct"
+      | "incorrect";
     id: number;
   }
 }
@@ -48,6 +60,7 @@ declare namespace Infrastructure {
 
   interface IUtilities {
     createViewModel: (model: Models.QuestionAnswer) => Models.QuestionAnswer;
+    gradeResults: (collection: object, answers: object) => void;
   }
 }
 

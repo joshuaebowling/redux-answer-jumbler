@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch: Function) => {
     onAnswerSelect: (answerId: number) => dispatch(applyAnswer(answerId)),
     clearAllResults: () => dispatch(clearAllResults()),
     removeResult: (id: number) => dispatch(removeResult(id)),
-    grade: () => dispatch(grade)
+    grade: () => dispatch(grade())
   };
 };
 

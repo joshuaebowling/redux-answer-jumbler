@@ -44,3 +44,11 @@
 .used {
   color: #999;
 }
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
