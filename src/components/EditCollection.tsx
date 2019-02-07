@@ -1,11 +1,16 @@
 import React from "react";
+import { Formik } from "formik";
 
 class EditCollection extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
-    return <h1>Edit Collection</h1>;
+    return (
+      <div>
+        <h1>Edit Collection</h1>
+      </div>
+    );
   }
 }
 

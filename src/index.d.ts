@@ -4,12 +4,9 @@ declare namespace Models {
     answer: string;
     id: number;
   }
-  interface IModelAvailability {
-    used: string;
-    available: string;
-    selected: string;
-    correct: string;
-    incorrect: string;
+  class QuestionAnswerSet {
+    name: string;
+    questionAnswers: Array<QuestionAnswer>;
   }
   class VMQuestionAnswer {
     questionModel: QuestionAnswer;
@@ -28,11 +25,22 @@ declare namespace Models {
       | "incorrect";
     id: number;
   }
+  interface IModelAvailability {
+    used: string;
+    available: string;
+    selected: string;
+    correct: string;
+    incorrect: string;
+  }
 }
 
 declare namespace Services {
   interface IQuestionAnswser {
     createModel: (question: string, answer: string) => Models.QuestionAnswer;
+    find: (name: string) => Models.QuestionAnswerSet;
+    update: (item: Models.QuestionAnswerSet) => void;
+    remove: (string: name) => void;
+    getNames: () => Array<string>;
   }
 }
 
@@ -61,6 +69,9 @@ declare namespace Infrastructure {
   interface IUtilities {
     createViewModel: (model: Models.QuestionAnswer) => Models.QuestionAnswer;
     gradeResults: (collection: object, answers: object) => void;
+  }
+  interface ICollectionNames {
+    QuestionAnswer: string;
   }
 }
 

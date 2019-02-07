@@ -6,3 +6,7 @@ export const ModelAvailability: Models.IModelAvailability = {
   correct: "correct",
   incorrect: "incorrect"
 };
+
+export const CollectionNames: Infrastructure.ICollectionNames = {
+  QuestionAnswer: "QuestionAnswer"
+};

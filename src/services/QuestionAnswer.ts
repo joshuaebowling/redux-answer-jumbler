@@ -1,6 +1,23 @@
 /// <reference path="../index.d.ts" />
+import Basil from "basil.js";
+
+const store = new Basil({
+  namespace: "QuestionAnswerJumbler",
+  storages: ["cookie", "local"],
+  storage: "local",
+  expireDays: 365
+});
+
+const questionAnswerStore = {};
 
 const QuestionAnswer: Services.IQuestionAnswer = {
+  find: (name: string) => JSON.parse(store.get(name)),
+  update: (item: Models.QuestionAnswerSet) =>
+    store.set(item.name, JSON.stringify(item.questionAnswers)),
+  remove: (name: string) => {
+    store.remove(name);
+  },
+  getNames: () => store.keys(),
   createModel: (id, question, answer) => ({ id, question, answer })
 };
 const collection: Array<Models.IQuestionAnswer> = [
