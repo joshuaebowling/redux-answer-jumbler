@@ -10,7 +10,7 @@ const store = new Basil({
 
 const questionAnswerStore = {};
 
-const QuestionAnswer: Services.IQuestionAnswer = {
+export const QuestionAnswer: Services.IQuestionAnswer = {
   find: (name: string) => JSON.parse(store.get(name)),
   update: (item: Models.QuestionAnswerSet) =>
     store.set(item.name, JSON.stringify(item.questionAnswers)),
@@ -18,7 +18,10 @@ const QuestionAnswer: Services.IQuestionAnswer = {
     store.remove(name);
   },
   getNames: () => store.keys(),
-  createModel: (id, question, answer) => ({ id, question, answer })
+  createModel: ({ name, questionAnswers }: Models.QuestionAnswerSet) => ({
+    name,
+    questionAnswers
+  })
 };
 const collection: Array<Models.IQuestionAnswer> = [
   QuestionAnswer.createModel(1, "Proximal", `IDK yet`),

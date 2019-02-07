@@ -59,6 +59,11 @@ declare namespace Infrastructure {
     currentAnswer: Models.VMQuestionAnswer;
   }
 
+  interface IEditQASetState {
+    collections: Array<string>;
+    selectedCollection: Models.QuestionAnswerSet;
+    isEditing: boolean;
+  }
   interface IQuestionAnswerProps {
     collection: Array<Models.VMQuestionAnswer>;
     answerOrder: Array<number>;
@@ -100,5 +105,13 @@ declare namespace Actions {
     clearAllResults: () => (dispatch: Function) => void;
     removeResult: (id: number) => (dispatch: Function) => void;
     grade: () => (dispatch: Function) => void;
+  }
+  interface IEditQASets {
+    EDIT_QASET_REQUEST: string;
+    SAVE_QASET_REQUEST: string;
+    RETRIEVE_QASET_NAMES: string;
+    getQaSetNames: () => (dispatch: Function) => void;
+    editQaSet: () => (dispatch: Function) => void;
+    saveQaSet: (item: Models.QuestionAnswerSet) => void;
   }
 }
