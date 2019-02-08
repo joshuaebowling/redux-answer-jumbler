@@ -21,17 +21,18 @@ export const QuestionAnswer: Services.IQuestionAnswer = {
   createModel: ({ name, questionAnswers }: Models.QuestionAnswerSet) => ({
     name,
     questionAnswers
-  })
+  }),
+  createQAModel: (id, answer, question) => ({ id, answer, question })
 };
 const collection: Array<Models.IQuestionAnswer> = [
-  QuestionAnswer.createModel(1, "Proximal", `IDK yet`),
-  QuestionAnswer.createModel(2, "Inferior", `AAAIDK yet`),
-  QuestionAnswer.createModel(3, "Anterior", "Toward the Front"),
-  QuestionAnswer.createModel(4, "Posterior", "Toward the Back"),
-  QuestionAnswer.createModel(5, "Median", "On the Midline"),
-  QuestionAnswer.createModel(6, "Medial", "Toward the Middle"),
-  QuestionAnswer.createModel(7, "Lateral", "Toward the Side"),
-  QuestionAnswer.createModel(8, "Superior", "Toward the Top")
+  QuestionAnswer.createQAModel(1, "Proximal", `IDK yet`),
+  QuestionAnswer.createQAModel(2, "Inferior", `AAAIDK yet`),
+  QuestionAnswer.createQAModel(3, "Anterior", "Toward the Front"),
+  QuestionAnswer.createQAModel(4, "Posterior", "Toward the Back"),
+  QuestionAnswer.createQAModel(5, "Median", "On the Midline"),
+  QuestionAnswer.createQAModel(6, "Medial", "Toward the Middle"),
+  QuestionAnswer.createQAModel(7, "Lateral", "Toward the Side"),
+  QuestionAnswer.createQAModel(8, "Superior", "Toward the Top")
 ];
 
 const collectionMap: object = (coll => {
@@ -39,4 +40,5 @@ const collectionMap: object = (coll => {
   coll.forEach(qa => (result[qa.id] = qa));
   return result;
 })(collection);
+console.log("colmap", collection);
 export default () => collectionMap;

@@ -11,11 +11,13 @@ const {
   grade
 } = actions;
 
-const mapStateToProps = (state: Infrastructure.IState) => ({
-  collection: state.collection,
-  answerOrder: state.answerOrder,
-  results: state.results
-});
+const mapStateToProps = (state: Infrastructure.IState) => {
+  return {
+    collection: state.questionAnswer.collection,
+    answerOrder: state.questionAnswer.answerOrder,
+    results: state.questionAnswer.results
+  };
+};
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {

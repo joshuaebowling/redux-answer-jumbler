@@ -78,6 +78,10 @@ declare namespace Infrastructure {
   interface ICollectionNames {
     QuestionAnswer: string;
   }
+  interface ReducerArguments {
+    state: Infrastructure.IEditQASetState;
+    action: Infrastructure.Action;
+  }
 }
 
 declare namespace ComponentArguments {

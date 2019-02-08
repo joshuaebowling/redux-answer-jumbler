@@ -1,8 +1,8 @@
-/// <reference path="./index.d.ts" />
+/// <reference path="../index.d.ts" />
 import { assign, omit, each } from "lodash";
-import { QuestionAnswer } from "./actions";
-import { ModelAvailability } from "./constants";
-import Utility from "./Utilities";
+import { QuestionAnswer } from "../actions";
+import { ModelAvailability } from "../constants";
+import Utility from "../Utilities";
 const { gradeResults } = Utility;
 
 const {

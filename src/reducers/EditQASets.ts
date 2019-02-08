@@ -1,4 +1,5 @@
 /// <reference path="../index.d.ts" />
+import { assign } from "lodash";
 
 const initialState: Infrastructure.IEditQASetState = {
   collections: [],
@@ -9,4 +10,6 @@ const initialState: Infrastructure.IEditQASetState = {
 export default (
   state: Infrastructure.IEditQASetState = initialState,
   action: Infrastructure.Action
-) => {};
+) => {
+  return assign({}, state);
+};
