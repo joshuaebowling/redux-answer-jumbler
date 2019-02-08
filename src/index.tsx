@@ -8,7 +8,7 @@ const { dispatch, subscribe, getState } = ReduxStore;
 import { QuestionAnswer } from "./actions";
 import QuestionAnswerComponent from "./containers/QuestionAnswer";
 import About from "./components/About";
-import EditCollection from "./containers/EditCollection";
+import EditQASets from "./containers/EditQASets";
 
 import "./styles.css";
 function App() {
@@ -22,7 +22,7 @@ function App() {
             <Link to="/edit">Edit Collection</Link>
             <Route path="/" exact component={About} />
             <Route path="/try" component={QuestionAnswerComponent} />
-            <Route path="/edit" component={EditCollection} />
+            <Route path="/edit" component={EditQASets} />
           </div>
         </Router>
       </Provider>

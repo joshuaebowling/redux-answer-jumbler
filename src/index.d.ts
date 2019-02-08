@@ -39,7 +39,7 @@ declare namespace Services {
     createModel: (question: string, answer: string) => Models.QuestionAnswer;
     find: (name: string) => Models.QuestionAnswerSet;
     update: (item: Models.QuestionAnswerSet) => void;
-    remove: (string: name) => void;
+    remove: (name: string) => void;
     getNames: () => Array<string>;
   }
 }
@@ -47,10 +47,14 @@ declare namespace Services {
 declare namespace Infrastructure {
   class Action {
     type: string;
-    payload: object | number;
+    payload: object | number | string;
   }
 
   interface IState {
+    questionAnswer: IQuestionAnswerState;
+    editQASets: IEditQASetState;
+  }
+  interface IQuestionAnswerState {
     collection: object;
     answerOrder: object;
     results: object;
@@ -60,8 +64,8 @@ declare namespace Infrastructure {
   }
 
   interface IEditQASetState {
-    collections: Array<string>;
-    selectedCollection: Models.QuestionAnswerSet;
+    qaSetNames: Array<string>;
+    selectedQASet: Models.QuestionAnswerSet;
     isEditing: boolean;
   }
   interface IQuestionAnswerProps {
@@ -113,9 +117,9 @@ declare namespace Actions {
   interface IEditQASets {
     EDIT_QASET_REQUEST: string;
     SAVE_QASET_REQUEST: string;
-    RETRIEVE_QASET_NAMES: string;
-    getQaSetNames: () => (dispatch: Function) => void;
-    editQaSet: () => (dispatch: Function) => void;
-    saveQaSet: (item: Models.QuestionAnswerSet) => void;
+    QASET_NAMES_REQUEST: string;
+    getQASetNames: () => (dispatch: Function) => void;
+    editQASet: (name: string) => (dispatch: Function) => void;
+    saveQASet: (item: Models.QuestionAnswerSet) => void;
   }
 }

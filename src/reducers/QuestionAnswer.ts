@@ -16,7 +16,7 @@ const {
   REMOVE_RESULT,
   GRADE_REQUEST
 } = QuestionAnswer;
-const initialState: Infrastructure.IState = {
+const initialState: Infrastructure.IQuestionAnswerState = {
   collection: {},
   results: {},
   answerOrder: {},
@@ -26,7 +26,7 @@ const initialState: Infrastructure.IState = {
 };
 
 const applyAnswerToQuestion = (
-  state: Infrastructure.IState,
+  state: Infrastructure.IQuestionAnswerState,
   stateAddition: object,
   answerId: number = 0,
   questionId: number = 0
@@ -49,7 +49,7 @@ const applyAnswerToQuestion = (
 };
 
 export default (
-  state: Infrastructure.IState = initialState,
+  state: Infrastructure.IQuestionAnswerState = initialState,
   action: Infrastructure.Action
 ) => {
   const stateAddition: object = {};
