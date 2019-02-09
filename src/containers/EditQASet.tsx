@@ -6,15 +6,14 @@ import { EditQASets as Actions } from "../actions/EditQASets";
 
 const mapStateToProps = (state: Infrastructure.IState) => {
   return {
-    QASetName: state.editQASets.QASetNames,
-    SelectedSet: state.editQASets.selectedQASet,
+    QASetNames: state.editQASets.QASetNames,
+    selectedQASet: state.editQASets.selectedQASet,
     isEditing: state.editQASets.isEditing
   };
 };
 const mapDispatchToProps = (dispatch: Function) => {
   return {
     getQASet: (name: string) => {
-      console.log("container getquaswetnames");
       dispatch(Actions.getQASetNames());
     },
     editQASet: (name: string) => dispatch(Actions.editQASet(name)),

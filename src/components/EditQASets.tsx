@@ -26,7 +26,11 @@ class EditQASets extends React.Component {
   }
   qaSetNames = [];
   renderQASets(qaSets: Array<string>) {
-    this.qaSetNames = map(qaSets, qaset => <li>{qaset}</li>);
+    this.qaSetNames = map(qaSets, qaset => (
+      <li key={qaset}>
+        {qaset} <Link to={`${this.props.match.url}/id/${qaset}`}>Edit</Link>
+      </li>
+    ));
   }
 }
 

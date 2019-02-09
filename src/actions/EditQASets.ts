@@ -11,9 +11,20 @@ export const EditQASets: Actions.IEditQASets = {
     });
   },
   editQASet: (name: string) => (dispatch: Function) => {
-    dispatch({ type: EditQASets.EDIT_QASET_REQUEST, payload: name });
+    const qaSet: Models.QuestionAnswerSet = {
+      name: name,
+      questionAnswers: QuestionAnswer.find(name)
+    };
+    dispatch({
+      type: EditQASets.EDIT_QASET_REQUEST,
+      payload: qaSet
+    });
   },
   saveQASet: (item: Models.QuestionAnswerSet) => (dispatch: Function) => {
-    dispatch({ type: EditQASets.SAVE_QASET_REQUEST, payload: item });
+    QuestionAnswer.update(item);
+    dispatch({
+      type: EditQASets.SAVE_QASET_REQUEST,
+      payload: QuestionAnswer.getNames()
+    });
   }
 };

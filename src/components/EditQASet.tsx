@@ -9,30 +9,35 @@ const newQASet: Models.QuestionAnswerSet = {
 class EditQASet extends React.Component {
   constructor(props: ComponentArguments.IQASet) {
     super(props);
-    if (props.match.params.id === 0) {
+    console.log("", props);
+    if (props.match.params.id === "0") {
       this.QASet = newQASet;
     } else {
-      props.getQASet(props.match.id);
+      props.editQASet(props.match.params.id);
     }
   }
   componentWillUpdate(state: Infrastructure.IEditQASetState) {
-    if (state.selectedQASet) {
+    console.log("willupdate", state);
+    if (state.selectedQASet && this.QASet == null) {
       this.QASet = state.selectedQASet;
     }
   }
   QASet: Models.QuestionAnswerSet = null;
   render() {
+    if (!this.QASet) return <h3>loading</h3>;
+    console.log(this.QASet);
     return (
       <div>
         <h3>Question Answers</h3>
         <Formik
           initialValues={{
-            name: newQASet.name,
-            questionAnswers: newQASet.questionAnswers
+            name: this.QASet.name,
+            questionAnswers: this.QASet.questionAnswers
           }}
           onSubmit={values =>
             setTimeout(() => {
               console.log(values);
+              this.props.saveQASet(this.QASet);
               alert(JSON.stringify(values, null, 2));
             }, 500)
           }
