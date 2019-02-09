@@ -1,18 +1,14 @@
 /// <reference path="../index.d.ts" />
 import { connect } from "react-redux";
 import { values } from "lodash";
-import EditQASets from "../components/EditQASets";
+import EditQASets from "../components/EditQASet";
 import { EditQASets as Actions } from "../actions/EditQASets";
 
-const mapStateToProps = (state: Infrastructure.IState) => ({
-  QASetNames: state.editQASets.qaSetNames,
-  selectedQASet: state.editQASets.selectedQASet,
-  isEditing: state.editQASets.isEditing
-});
+const mapStateToProps = (state: Infrastructure.IState) => ({});
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    getQASetNames: () => {
+    getQASet: (name: string) => {
       console.log("container getquaswetnames");
       dispatch(Actions.getQASetNames());
     },

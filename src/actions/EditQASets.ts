@@ -1,6 +1,5 @@
 /// <reference path="../index.d.ts" />
 import { QuestionAnswer } from "../services/QuestionAnswer";
-console.log(QuestionAnswer);
 export const EditQASets: Actions.IEditQASets = {
   EDIT_QASET_REQUEST: "EDIT_QASET_REQUEST",
   SAVE_QASET_REQUEST: "SAVE_QASET_REQUEST",

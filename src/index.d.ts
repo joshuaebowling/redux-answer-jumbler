@@ -64,7 +64,7 @@ declare namespace Infrastructure {
   }
 
   interface IEditQASetState {
-    qaSetNames: Array<string>;
+    QASetNames: Array<string>;
     selectedQASet: Models.QuestionAnswerSet;
     isEditing: boolean;
   }
@@ -74,7 +74,7 @@ declare namespace Infrastructure {
     onAnswerSelect(): (answerId: number) => void;
     onQuestionSelect(): (questionId: number) => void;
   }
-
+  interface IEditQASetsProps {}
   interface IUtilities {
     createViewModel: (model: Models.QuestionAnswer) => Models.QuestionAnswer;
     gradeResults: (collection: object, answers: object) => void;
@@ -93,6 +93,9 @@ declare namespace ComponentArguments {
     viewModel: Models.VMQuestionAnswer;
     onSelect(): (id: number) => void;
     stateClass: string;
+  }
+  interface IQASets {
+    getQASetNames: () => void;
   }
 }
 
