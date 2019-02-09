@@ -1,11 +1,16 @@
 /// <reference path="../index.d.ts" />
 import { connect } from "react-redux";
 import { values } from "lodash";
-import EditQASets from "../components/EditQASet";
+import EditQASet from "../components/EditQASet";
 import { EditQASets as Actions } from "../actions/EditQASets";
 
-const mapStateToProps = (state: Infrastructure.IState) => ({});
-
+const mapStateToProps = (state: Infrastructure.IState) => {
+  return {
+    QASetName: state.editQASets.QASetNames,
+    SelectedSet: state.editQASets.selectedQASet,
+    isEditing: state.editQASets.isEditing
+  };
+};
 const mapDispatchToProps = (dispatch: Function) => {
   return {
     getQASet: (name: string) => {
@@ -21,4 +26,4 @@ const mapDispatchToProps = (dispatch: Function) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditQASets);
+)(EditQASet);

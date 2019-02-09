@@ -97,6 +97,18 @@ declare namespace ComponentArguments {
   interface IQASets {
     getQASetNames: () => void;
   }
+  interface IQASet {
+    match: object;
+    location: object;
+    history: object;
+    getQASet: (name: string) => (dispatch: Function) => void;
+    editQASet: (
+      qaSet: Models.QuestionAnswerSet
+    ) => (dispatch: Function) => void;
+    saveQASet: (
+      qaSet: Models.QuestionAnswerSet
+    ) => (dispatch: Function) => void;
+  }
 }
 
 declare namespace Actions {

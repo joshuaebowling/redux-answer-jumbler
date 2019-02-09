@@ -7,15 +7,20 @@ const newQASet: Models.QuestionAnswerSet = {
   questionAnswers: [{ question: "quesiton", answer: "answer", id: 0 }]
 };
 class EditQASet extends React.Component {
-  constructor({ match, location, history }) {
-    super(...arguments);
-    console.log(match.params.id);
-    if (match.params.id === 0) {
+  constructor(props: ComponentArguments.IQASet) {
+    super(props);
+    if (props.match.params.id === 0) {
       this.QASet = newQASet;
+    } else {
+      props.getQASet(props.match.id);
+    }
+  }
+  componentWillUpdate(state: Infrastructure.IEditQASetState) {
+    if (state.selectedQASet) {
+      this.QASet = state.selectedQASet;
     }
   }
   QASet: Models.QuestionAnswerSet = null;
-  componentWillUpdate(state) {}
   render() {
     return (
       <div>
@@ -33,7 +38,11 @@ class EditQASet extends React.Component {
           }
           render={({ values }) => (
             <Form>
-              <Field name="name" value="" placeholder="Set Name" />
+              <Field
+                name="name"
+                onChange={e => (values.name = e.currentTarget.value)}
+                placeholder="Set Name"
+              />
               <FieldArray
                 name="questionAnswers"
                 render={arrayHelpers => (

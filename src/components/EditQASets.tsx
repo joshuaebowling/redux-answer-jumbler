@@ -4,7 +4,7 @@ import React from "react";
 import { Link, Route } from "react-router-dom";
 import { map } from "lodash";
 
-import EditQASet from "./EditQASet";
+import EditQASet from "../containers/EditQASet";
 
 class EditQASets extends React.Component {
   constructor(props: ComponentArguments.IQASets) {
@@ -15,21 +15,16 @@ class EditQASets extends React.Component {
     this.renderQASets(state.QASetNames);
   }
   render() {
-    console.log(this.props.match);
     return (
       <div>
         <h1>Manage QuestionAnswer Sets</h1>
         <Link to={`${this.props.match.url}/id/0`}>Add New</Link>
         <ul> {this.qaSetNames}</ul>
-        <Route
-          path={`${this.props.match.url}/id/:id`}
-          component={EditQASet}
-          qaSet={null}
-        />
+        <Route path={`${this.props.match.url}/id/:id`} component={EditQASet} />
       </div>
     );
   }
-  qaSetNames = [<li key="1">test</li>];
+  qaSetNames = [];
   renderQASets(qaSets: Array<string>) {
     this.qaSetNames = map(qaSets, qaset => <li>{qaset}</li>);
   }
