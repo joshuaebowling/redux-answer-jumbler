@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Formik, FieldArray, Form, Field } from "formik";
+import { assign } from "lodash";
 const newQASet: Models.QuestionAnswerSet = {
   name: "test",
   questionAnswers: [{ question: "quesiton", answer: "answer", id: 0 }]
@@ -17,7 +18,6 @@ class EditQASet extends React.Component {
     }
   }
   componentWillUpdate(state: Infrastructure.IEditQASetState) {
-    console.log("willupdate", state);
     if (state.selectedQASet && this.QASet == null) {
       this.QASet = state.selectedQASet;
     }
@@ -32,7 +32,8 @@ class EditQASet extends React.Component {
         <Formik
           initialValues={{
             name: this.QASet.name,
-            questionAnswers: this.QASet.questionAnswers
+            questionAnswers: this.QASet.questionAnswers,
+            test: "test"
           }}
           onSubmit={values =>
             setTimeout(() => {
@@ -41,60 +42,62 @@ class EditQASet extends React.Component {
               alert(JSON.stringify(values, null, 2));
             }, 500)
           }
-          render={({ values }) => (
+          render={formProps => (
             <Form>
               <Field
                 name="name"
-                onChange={e => (values.name = e.currentTarget.value)}
+                onChange={e => (formProps.values.name = e.currentTarget.value)}
                 placeholder="Set Name"
               />
               <FieldArray
                 name="questionAnswers"
                 render={arrayHelpers => (
                   <div>
-                    {values.questionAnswers &&
-                    values.questionAnswers.length > 0 ? (
-                      values.questionAnswers.map((qa, index) => (
-                        <div key={index}>
-                          <Field
-                            name={`qa.id`}
-                            value={`${index}`}
-                            type="hidden"
-                          />
-                          <Field
-                            name={`qa.question`}
-                            onChange={e =>
-                              (qa.question = e.currentTarget.value)
-                            }
-                            placeholder="Question"
-                          />
-                          <Field
-                            name={`qa.answer`}
-                            placeholder="Answer"
-                            onChange={e => (qa.answer = e.currentTarget.value)}
-                          />
+                    {formProps.values.questionAnswers &&
+                    formProps.values.questionAnswers.length > 0 ? (
+                      formProps.values.questionAnswers.map((qa, index) => {
+                        console.log(formProps.values.questionAnswers[index]);
+                        return (
+                          <div key={index}>
+                            <Field
+                              name={`values.questionAnswers[${index}].id`}
+                              value={qa.id}
+                              type="hidden"
+                            />
+                            <Field
+                              name={`questionAnswers[${index}].question`}
+                              placeholder="Question"
+                            />
+                            <Field
+                              name={`qa.answer`}
+                              placeholder="Answer"
+                              onChange={e =>
+                                (qa.answer = e.currentTarget.value)
+                              }
+                            />
 
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
-                          >
-                            -
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              console.log("qa", qa);
-                              arrayHelpers.insert(index, {
-                                id: index + 1,
-                                question: qa.question,
-                                answer: qa.answer
-                              });
-                            }} // insert an empty string at a position
-                          >
-                            +
-                          </button>
-                        </div>
-                      ))
+                            <button
+                              type="button"
+                              onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
+                            >
+                              -
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                console.log("qa", qa);
+                                arrayHelpers.insert(index, {
+                                  id: index + 1,
+                                  question: qa.question,
+                                  answer: qa.answer
+                                });
+                              }} // insert an empty string at a position
+                            >
+                              +
+                            </button>
+                          </div>
+                        );
+                      })
                     ) : (
                       <button
                         type="button"
