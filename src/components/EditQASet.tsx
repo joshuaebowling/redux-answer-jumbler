@@ -10,6 +10,7 @@ const newQASet: Models.QuestionAnswerSet = {
 class EditQASet extends React.Component {
   constructor(props: ComponentArguments.IQASet) {
     super(props);
+
     console.log("", props);
     if (props.match.params.id === "0") {
       this.QASet = newQASet;
@@ -28,7 +29,8 @@ class EditQASet extends React.Component {
     console.log(this.QASet);
     return (
       <div>
-        <h3>Question Answers</h3>
+        <h3>{this.QASet.name}</h3>
+
         <Formik
           initialValues={{
             name: this.QASet.name,
@@ -37,18 +39,13 @@ class EditQASet extends React.Component {
           }}
           onSubmit={values =>
             setTimeout(() => {
-              console.log(values);
-              this.props.saveQASet(this.QASet);
+              // this.qaSet.questionAnswers = assign({}, values.questionAnswers);
+              this.props.saveQASet(values);
               alert(JSON.stringify(values, null, 2));
             }, 500)
           }
           render={formProps => (
             <Form>
-              <Field
-                name="name"
-                onChange={e => (formProps.values.name = e.currentTarget.value)}
-                placeholder="Set Name"
-              />
               <FieldArray
                 name="questionAnswers"
                 render={arrayHelpers => (
@@ -56,7 +53,6 @@ class EditQASet extends React.Component {
                     {formProps.values.questionAnswers &&
                     formProps.values.questionAnswers.length > 0 ? (
                       formProps.values.questionAnswers.map((qa, index) => {
-                        console.log(formProps.values.questionAnswers[index]);
                         return (
                           <div key={index}>
                             <Field
@@ -69,11 +65,8 @@ class EditQASet extends React.Component {
                               placeholder="Question"
                             />
                             <Field
-                              name={`qa.answer`}
+                              name={`questionAnswers[${index}].answer`}
                               placeholder="Answer"
-                              onChange={e =>
-                                (qa.answer = e.currentTarget.value)
-                              }
                             />
 
                             <button
