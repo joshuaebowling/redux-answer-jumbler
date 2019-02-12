@@ -1,17 +1,16 @@
 /// <reference path="../index.d.ts" />
 
 import React from "react";
+import { Link } from "react-router";
 import { Formik, FieldArray, Form, Field } from "formik";
 import { assign } from "lodash";
 const newQASet: Models.QuestionAnswerSet = {
-  name: "test",
+  name: "",
   questionAnswers: [{ question: "quesiton", answer: "answer", id: 0 }]
 };
 class EditQASet extends React.Component {
   constructor(props: ComponentArguments.IQASet) {
     super(props);
-
-    console.log("", props);
     if (props.match.params.id === "0") {
       this.QASet = newQASet;
     } else {
@@ -26,26 +25,36 @@ class EditQASet extends React.Component {
   QASet: Models.QuestionAnswerSet = null;
   render() {
     if (!this.QASet) return <h3>loading</h3>;
-    console.log(this.QASet);
     return (
       <div>
-        <h3>{this.QASet.name}</h3>
-
+        <h6>
+          There's no validation on this form so if you want to pass hacky data
+          into your localstorage then be my guest.
+        </h6>
         <Formik
           initialValues={{
             name: this.QASet.name,
             questionAnswers: this.QASet.questionAnswers,
-            test: "test"
+            saved: this.QASet.name !== ""
           }}
-          onSubmit={values =>
-            setTimeout(() => {
-              // this.qaSet.questionAnswers = assign({}, values.questionAnswers);
-              this.props.saveQASet(values);
-              alert(JSON.stringify(values, null, 2));
-            }, 500)
-          }
+          onSubmit={values => {
+            this.props.saveQASet(values);
+
+            alert(JSON.stringify(values, null, 2));
+          }}
           render={formProps => (
             <Form>
+              <Field
+                name="name"
+                type={formProps.values.saved ? "hidden" : "input"}
+                placeholder="Name the Set"
+              />
+              {formProps.values.saved ? (
+                <h3>{this.QASet.name}</h3>
+              ) : (
+                <h3>{this.QASet.name}</h3>
+              )}
+
               <FieldArray
                 name="questionAnswers"
                 render={arrayHelpers => (
@@ -78,7 +87,6 @@ class EditQASet extends React.Component {
                             <button
                               type="button"
                               onClick={() => {
-                                console.log("qa", qa);
                                 arrayHelpers.insert(index, {
                                   id: index + 1,
                                   question: qa.question,
@@ -99,7 +107,7 @@ class EditQASet extends React.Component {
                         }
                       >
                         {/* show this when user has removed all friends from the list */}
-                        Add a friend
+                        Add a QuestionAnswer set
                       </button>
                     )}
                     <div>

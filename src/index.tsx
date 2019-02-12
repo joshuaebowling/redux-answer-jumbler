@@ -9,7 +9,7 @@ import { QuestionAnswer } from "./actions";
 import QuestionAnswerComponent from "./containers/QuestionAnswer";
 import About from "./components/About";
 import EditQASets from "./containers/EditQASets";
-
+import EditQASet from "../src/containers/EditQASet";
 import "./styles.css";
 function App() {
   return (
@@ -19,10 +19,11 @@ function App() {
           <div>
             <Link to="/">About</Link>
             <Link to="/try">Try</Link>
-            <Link to="/edit">Edit Collection</Link>
+            <Link to="/collection">View Collection</Link>
             <Route path="/" exact component={About} />
             <Route path="/try" component={QuestionAnswerComponent} />
-            <Route path="/edit" component={EditQASets} />
+            <Route path="/collection" component={EditQASets} />
+            <Route path={`/edit/id/:id`} component={EditQASet} />
           </div>
         </Router>
       </Provider>
