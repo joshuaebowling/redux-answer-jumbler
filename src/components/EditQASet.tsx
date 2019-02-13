@@ -3,7 +3,7 @@
 import React from "react";
 import { Link } from "react-router";
 import { Formik, FieldArray, Form, Field } from "formik";
-import { assign } from "lodash";
+import { assign, keys } from "lodash";
 const newQASet: Models.QuestionAnswerSet = {
   name: "",
   questionAnswers: [{ question: "quesiton", answer: "answer", id: 0 }]
@@ -39,13 +39,21 @@ class EditQASet extends React.Component {
             questionAnswers: this.QASet.questionAnswers,
             saved: this.QASet.name !== ""
           }}
+          checkName={this.props.checkName}
           onSubmit={values => {
             this.props.saveQASet(values);
-
             alert(JSON.stringify(values, null, 2));
           }}
-          render={formProps => (
+          validate={values => {
+            const errors = {};
+            if (!this.props.nameIsOkay) {
+              errors.nameIsOkay = "duplicate";
+            }
+            return errors;
+          }}
+          render={(formProps, ...other) => (
             <Form>
+              <span>{keys(formProps.errors)}</span>
               <Field
                 name="name"
                 type={formProps.values.saved ? "hidden" : "input"}
@@ -115,6 +123,7 @@ class EditQASet extends React.Component {
                     )}
                     <div>
                       <button type="submit">Submit</button>
+                      <p>{formProps.errors.nameIsOkay}</p>
                     </div>
                   </div>
                 )}

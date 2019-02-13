@@ -8,7 +8,8 @@ const mapStateToProps = (state: Infrastructure.IState) => {
   return {
     QASetNames: state.editQASets.QASetNames,
     selectedQASet: state.editQASets.selectedQASet,
-    isEditing: state.editQASets.isEditing
+    isEditing: state.editQASets.isEditing,
+    nameIsOkay: state.editQASets.nameIsOkay
   };
 };
 const mapDispatchToProps = (dispatch: Function) => {

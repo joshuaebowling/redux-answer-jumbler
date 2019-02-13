@@ -12,7 +12,8 @@ const {
 const initialState: Infrastructure.IEditQASetState = {
   qaSetNames: [],
   selectedQASet: null,
-  isEditing: false
+  isEditing: false,
+  nameIsOkay: false
 };
 
 export default (

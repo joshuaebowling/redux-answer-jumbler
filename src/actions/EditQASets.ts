@@ -1,6 +1,6 @@
 /// <reference path="../index.d.ts" />
 import { QuestionAnswer } from "../services/QuestionAnswer";
-import { chain, isString, find } from "lodash";
+import { chain, isUndefined, find } from "lodash";
 
 export const EditQASets: Actions.IEditQASets = {
   EDIT_QASET_REQUEST: "EDIT_QASET_REQUEST",
@@ -33,10 +33,12 @@ export const EditQASets: Actions.IEditQASets = {
   },
   checkName: (name: string) => (dispatch: Function) => {
     const nameInUse: boolean = chain(QuestionAnswer.getNames())
-      .find(name)
-      .isString()
+      .find((qaName: string) => {
+        console.log(`${name}=${qaName}`);
+        return name.toLowerCase() === qaName.toLowerCase();
+      })
+      .isUndefined()
       .value();
-    console.log("anemisuse", nameInUse);
     dispatch({
       type: EditQASets.CHECK_NAME_REQUEST,
       payload: nameInUse
