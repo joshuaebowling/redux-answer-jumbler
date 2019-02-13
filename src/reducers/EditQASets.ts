@@ -2,7 +2,13 @@
 import { assign } from "lodash";
 import { EditQASets as Actions } from "../actions/EditQASets";
 
-const { QASET_NAMES_REQUEST, SAVE_QASET_REQUEST, EDIT_QASET_REQUEST } = Actions;
+const {
+  QASET_NAMES_REQUEST,
+  SAVE_QASET_REQUEST,
+  EDIT_QASET_REQUEST,
+  CHECK_NAME_REQUEST,
+  CHECK_NAME_RESPONSE
+} = Actions;
 const initialState: Infrastructure.IEditQASetState = {
   qaSetNames: [],
   selectedQASet: null,
@@ -23,6 +29,9 @@ export default (
       break;
     case EDIT_QASET_REQUEST:
       stateAddition.selectedQASet = action.payload;
+      break;
+    case CHECK_NAME_REQUEST:
+      stateAddition.nameIsOkay = action.payload;
       break;
     default:
       break;

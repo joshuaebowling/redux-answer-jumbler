@@ -88,6 +88,14 @@ declare namespace Infrastructure {
   }
 }
 
+declare namespace Response {
+  interface IQuestionAnswerSave {
+    success: string;
+    nameTaken: string;
+    error: string;
+  }
+}
+
 declare namespace ComponentArguments {
   interface IQuestionAnswer {
     viewModel: Models.VMQuestionAnswer;
@@ -108,6 +116,7 @@ declare namespace ComponentArguments {
     saveQASet: (
       qaSet: Models.QuestionAnswerSet
     ) => (dispatch: Function) => void;
+    checkName: (name: string) => (dispatch: Function) => void;
   }
 }
 
@@ -132,9 +141,12 @@ declare namespace Actions {
   interface IEditQASets {
     EDIT_QASET_REQUEST: string;
     SAVE_QASET_REQUEST: string;
+    CHECK_NAME_REQUEST: string;
+    CHECK_NAME_RESPONSE: string;
     QASET_NAMES_REQUEST: string;
     getQASetNames: () => (dispatch: Function) => void;
     editQASet: (name: string) => (dispatch: Function) => void;
     saveQASet: (item: Models.QuestionAnswerSet) => void;
+    checkName: (name: string) => void;
   }
 }

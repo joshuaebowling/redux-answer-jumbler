@@ -25,6 +25,8 @@ class EditQASet extends React.Component {
   QASet: Models.QuestionAnswerSet = null;
   render() {
     if (!this.QASet) return <h3>loading</h3>;
+    var self = this;
+    console.log("self", self);
     return (
       <div>
         <h6>
@@ -48,6 +50,7 @@ class EditQASet extends React.Component {
                 name="name"
                 type={formProps.values.saved ? "hidden" : "input"}
                 placeholder="Name the Set"
+                onKeyUp={self.props.checkName(formProps.values.name)}
               />
               {formProps.values.saved ? (
                 <h3>{this.QASet.name}</h3>
