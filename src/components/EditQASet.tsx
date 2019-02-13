@@ -47,17 +47,24 @@ class EditQASet extends React.Component {
           validate={values => {
             const errors = {};
             if (!this.props.nameIsOkay) {
-              errors.nameIsOkay = "duplicate";
+              errors.nameIsOkay = "the set name is already in use";
+            }
+            if (values.name === "") {
+              errors.nameIsOkay = "please enter a name for the set";
             }
             return errors;
           }}
           render={(formProps, ...other) => (
             <Form>
-              <span>{keys(formProps.errors)}</span>
               <Field
                 name="name"
                 type={formProps.values.saved ? "hidden" : "input"}
                 placeholder="Name the Set"
+                style={{
+                  border: formProps.errors.nameIsOkay
+                    ? "3px solid red"
+                    : "1px solid green"
+                }}
                 onKeyUp={self.props.checkName(formProps.values.name)}
               />
               {formProps.values.saved ? (
