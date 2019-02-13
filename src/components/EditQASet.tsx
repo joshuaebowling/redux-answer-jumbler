@@ -6,7 +6,7 @@ import { Formik, FieldArray, Form, Field } from "formik";
 import { assign, keys } from "lodash";
 const newQASet: Models.QuestionAnswerSet = {
   name: "",
-  questionAnswers: [{ question: "quesiton", answer: "answer", id: 0 }]
+  questionAnswers: [{ question: "", answer: "", id: 0 }]
 };
 class EditQASet extends React.Component {
   constructor(props: ComponentArguments.IQASet) {
@@ -25,8 +25,6 @@ class EditQASet extends React.Component {
   QASet: Models.QuestionAnswerSet = null;
   render() {
     if (!this.QASet) return <h3>loading</h3>;
-    var self = this;
-    console.log("self", self);
     return (
       <div>
         <h6>
@@ -54,7 +52,7 @@ class EditQASet extends React.Component {
             }
             return errors;
           }}
-          render={(formProps, ...other) => (
+          render={formProps => (
             <Form>
               <Field
                 name="name"
@@ -65,7 +63,7 @@ class EditQASet extends React.Component {
                     ? "3px solid red"
                     : "1px solid green"
                 }}
-                onKeyUp={self.props.checkName(formProps.values.name)}
+                onKeyUp={this.props.checkName(formProps.values.name)}
               />
               {formProps.values.saved ? (
                 <h3>{this.QASet.name}</h3>
