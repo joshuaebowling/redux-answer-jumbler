@@ -1,7 +1,7 @@
 /// <reference path="../index.d.ts" />
 
 import React from "react";
-import { Link } from "react-router";
+import { Link, Redirect } from "react-router-dom";
 import { Formik, FieldArray, Form, Field } from "formik";
 import { assign, keys } from "lodash";
 const newQASet: Models.QuestionAnswerSet = {
@@ -40,7 +40,8 @@ class EditQASet extends React.Component {
           checkName={this.props.checkName}
           onSubmit={values => {
             this.props.saveQASet(values);
-            alert(JSON.stringify(values, null, 2));
+            alert("Set saved, redirecting to set list");
+            return this.props.history.push("/collection");
           }}
           validate={values => {
             const errors = {};
@@ -128,6 +129,7 @@ class EditQASet extends React.Component {
                     )}
                     <div>
                       <button type="submit">Submit</button>
+                      <Link to="/collection">Cancel</Link>
                       <p>{formProps.errors.nameIsOkay}</p>
                     </div>
                   </div>

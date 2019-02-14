@@ -17,7 +17,7 @@ class EditQASets extends React.Component {
   render() {
     return (
       <div>
-        <h1>Manage QuestionAnswer Sets</h1>
+        <h1>Manage QA Sets</h1>
         <Link to={`/edit/id/0`}>Add New</Link>
         <ul> {this.qaSetNames}</ul>
       </div>
