@@ -45,6 +45,9 @@ class EditQASet extends React.Component {
           }}
           validate={values => {
             const errors = {};
+            if (values.saved) {
+              return errors;
+            }
             if (!this.props.nameIsOkay) {
               errors.nameIsOkay = "the set name is already in use";
             }

@@ -32,6 +32,5 @@ function App() {
   );
 }
 
-dispatch(QuestionAnswer.get());
 const rootElement = document.getElementById("root");
 render(<App />, rootElement);

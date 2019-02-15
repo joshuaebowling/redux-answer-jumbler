@@ -13,7 +13,6 @@ class QuestionAnswers extends React.Component {
     results: object;
   }) {
     super(props);
-    console.log(props);
     this.renderResults = this.renderResults.bind(this);
     this.clearAllResults = this.clearAllResults.bind(this);
     this.renderQuestions = this.renderQuestions.bind(this);
@@ -48,9 +47,7 @@ class QuestionAnswers extends React.Component {
     answerOrder: object,
     collection: Array<Models.VMQuestionAnswer>
   ) {
-    console.log("ao", answerOrder);
     this.answers = map(answerOrder, (a: number) => {
-      console.log(a);
       return (
         <Answer
           key={a}

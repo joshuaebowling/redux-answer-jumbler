@@ -12,7 +12,6 @@ const questionAnswerStore = {};
 
 export const QuestionAnswer: Services.IQuestionAnswer = {
   find: (name: string) => {
-    console.log("name", name);
     if (name === undefined) {
       return collectionMap;
     }
@@ -49,4 +48,3 @@ const collectionMap: object = (coll => {
   coll.forEach(qa => (result[qa.id] = qa));
   return result;
 })(collection);
-console.log("colmap", collection);
