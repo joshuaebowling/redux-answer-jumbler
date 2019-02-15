@@ -18,14 +18,13 @@ function App() {
         <Router>
           <div>
             <Link to="/">About</Link>
-            &nbsp;
             <Link to="/try">Try</Link>
-            &nbsp;
-            <Link to="/collection">View QA Sets</Link>
+            <Link to="/collection">View Collection</Link>
             <Route path="/" exact component={About} />
             <Route path="/try" component={QuestionAnswerComponent} />
             <Route path="/collection" component={EditQASets} />
             <Route path={`/edit/id/:id`} component={EditQASet} />
+            <Route path={`/qa/:name`} component={QuestionAnswerComponent} />
           </div>
         </Router>
       </Provider>

@@ -131,7 +131,7 @@ declare namespace Actions {
     REMOVE_RESULT: string;
     CLEAR_RESULTS: string;
     GRADE_REQUEST: string;
-    get: () => (dispatch: Function) => void;
+    get: (name: string) => (dispatch: Function) => void;
     applyAnswer: (answerId: number) => (dispatch: Function) => void;
     applyQuestion: (answerId: number) => (dispatch: Function) => void;
     clearAllResults: () => (dispatch: Function) => void;

@@ -1,6 +1,6 @@
 /// <reference path="../index.d.ts" />
 import Basil from "basil.js";
-
+import { map } from "lodash";
 const store = new Basil({
   namespace: "QuestionAnswerJumbler",
   storages: ["cookie", "local"],
@@ -11,7 +11,16 @@ const store = new Basil({
 const questionAnswerStore = {};
 
 export const QuestionAnswer: Services.IQuestionAnswer = {
-  find: (name: string) => JSON.parse(store.get(name)),
+  find: (name: string) => {
+    console.log("name", name);
+    if (name === undefined) {
+      return collectionMap;
+    }
+    const result = map(JSON.parse(store.get(name)), qa =>
+      QuestionAnswer.createQAModel(qa.id, qa.answer, qa.question)
+    );
+    return result;
+  },
   update: (item: Models.QuestionAnswerSet) =>
     store.set(item.name, JSON.stringify(item.questionAnswers)),
   remove: (name: string) => {
@@ -41,4 +50,3 @@ const collectionMap: object = (coll => {
   return result;
 })(collection);
 console.log("colmap", collection);
-export default () => collectionMap;

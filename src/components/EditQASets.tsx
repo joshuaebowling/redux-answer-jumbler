@@ -17,7 +17,7 @@ class EditQASets extends React.Component {
   render() {
     return (
       <div>
-        <h1>Manage QA Sets</h1>
+        <h1>Manage QuestionAnswer Sets</h1>
         <Link to={`/edit/id/0`}>Add New</Link>
         <ul> {this.qaSetNames}</ul>
       </div>
@@ -28,7 +28,7 @@ class EditQASets extends React.Component {
     this.qaSetNames = map(qaSets, qaset => (
       <li key={qaset}>
         {qaset} <Link to={`/edit/id/${qaset}`}>Edit</Link>
-        <Link to={`/test/id/${qaset}`}>Test</Link>
+        <Link to={`/qa/${qaset}`}>Practice Set</Link>
       </li>
     ));
   }

@@ -8,7 +8,8 @@ const {
   applyQuestion,
   clearAllResults,
   removeResult,
-  grade
+  grade,
+  get
 } = actions;
 
 const mapStateToProps = (state: Infrastructure.IState) => {
@@ -27,7 +28,8 @@ const mapDispatchToProps = (dispatch: Function) => {
     onAnswerSelect: (answerId: number) => dispatch(applyAnswer(answerId)),
     clearAllResults: () => dispatch(clearAllResults()),
     removeResult: (id: number) => dispatch(removeResult(id)),
-    grade: () => dispatch(grade())
+    grade: () => dispatch(grade()),
+    getQASet: (name: string) => dispatch(get(name))
   };
 };
 

@@ -13,18 +13,19 @@ class QuestionAnswers extends React.Component {
     results: object;
   }) {
     super(props);
+    console.log(props);
     this.renderResults = this.renderResults.bind(this);
     this.clearAllResults = this.clearAllResults.bind(this);
     this.renderQuestions = this.renderQuestions.bind(this);
     this.renderAnswers = this.renderAnswers.bind(this);
-    this.renderAnswers = partial(this.renderAnswers, props.answerOrder);
     this.renderQuestions(props.collection);
-    this.renderAnswers(props.collection);
+    this.renderAnswers(props.answerOrder, props.collection);
+    props.getQASet(props.match.params.name);
   }
   componentWillUpdate(state) {
     this.renderResults(state.results);
     this.renderQuestions(state.collection);
-    this.renderAnswers(state.collection);
+    this.renderAnswers(state.answerOrder, state.collection);
   }
   clearAllResults() {
     this.props.clearAllResults();
@@ -47,14 +48,18 @@ class QuestionAnswers extends React.Component {
     answerOrder: object,
     collection: Array<Models.VMQuestionAnswer>
   ) {
-    this.answers = map(answerOrder, (a: number) => (
-      <Answer
-        key={a}
-        viewModel={collection[a]}
-        onSelect={this.props.onAnswerSelect}
-        stateClass={collection[a].answerAvailability}
-      />
-    ));
+    console.log("ao", answerOrder);
+    this.answers = map(answerOrder, (a: number) => {
+      console.log(a);
+      return (
+        <Answer
+          key={a}
+          viewModel={collection[a]}
+          onSelect={this.props.onAnswerSelect}
+          stateClass={collection[a].answerAvailability}
+        />
+      );
+    });
   }
   renderResults(resultsData: Array<object>) {
     this.results = map(resultsData, (val, key) => {
