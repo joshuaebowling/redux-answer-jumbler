@@ -34,7 +34,6 @@ export const EditQASets: Actions.IEditQASets = {
   checkName: (name: string) => (dispatch: Function) => {
     const nameInUse: boolean = chain(QuestionAnswer.getNames())
       .find((qaName: string) => {
-        console.log(`${name}=${qaName}`);
         return name.toLowerCase() === qaName.toLowerCase();
       })
       .isUndefined()

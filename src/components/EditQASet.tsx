@@ -6,7 +6,7 @@ import { Formik, FieldArray, Form, Field } from "formik";
 import { assign, keys } from "lodash";
 const newQASet: Models.QuestionAnswerSet = {
   name: "",
-  questionAnswers: [{ question: "", answer: "", id: 0 }]
+  questionAnswers: []
 };
 class EditQASet extends React.Component {
   constructor(props: ComponentArguments.IQASet) {

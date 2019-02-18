@@ -28,19 +28,19 @@ const initialState: Infrastructure.IQuestionAnswerState = {
 const applyAnswerToQuestion = (
   state: Infrastructure.IQuestionAnswerState,
   stateAddition: object,
-  answerId: number = 0,
-  questionId: number = 0
+  answerId: number = -1,
+  questionId: number = -1
 ) => {
-  const currentAnswer = answerId === 0 ? state.currentAnswer : answerId;
+  const currentAnswer = answerId === -1 ? state.currentAnswer : answerId;
   const currentQuestion: number =
-    questionId === 0 ? state.currentQuestion : questionId;
-  if (currentAnswer !== 0 && currentQuestion !== 0) {
+    questionId === -1 ? state.currentQuestion : questionId;
+  if (currentAnswer !== -1 && currentQuestion !== -1) {
     stateAddition.results = {
       ...state.results,
       [currentQuestion]: currentAnswer
     };
-    stateAddition.currentQuestion = 0;
-    stateAddition.currentAnswer = 0;
+    stateAddition.currentQuestion = -1;
+    stateAddition.currentAnswer = -1;
     stateAddition.collection[currentQuestion].questionAvailability =
       ModelAvailability.used;
     stateAddition.collection[currentAnswer].answerAvailability =

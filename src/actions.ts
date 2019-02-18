@@ -33,6 +33,7 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
     });
   },
   applyAnswer: (answerId: number) => (dispatch: Function) => {
+    console.log(answerId);
     dispatch({ type: QuestionAnswer.APPLY_ANSWER_REQUEST, payload: answerId });
   },
   applyQuestion: (questionId: number) => {
