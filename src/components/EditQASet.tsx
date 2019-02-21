@@ -87,7 +87,7 @@ class EditQASet extends React.Component {
                             <Field
                               name={`values.questionAnswers[${index}].id`}
                               value={qa.id}
-                              type="hidden"
+                              disabled
                             />
                             <Field
                               name={`questionAnswers[${index}].question`}
@@ -108,9 +108,10 @@ class EditQASet extends React.Component {
                               type="button"
                               onClick={() => {
                                 arrayHelpers.insert(index, {
-                                  id: index + 1,
-                                  question: qa.question,
-                                  answer: qa.answer
+                                  id:
+                                    formProps.values.questionAnswers.length + 1,
+                                  question: "",
+                                  answer: ""
                                 });
                               }} // insert an empty string at a position
                             >
@@ -123,7 +124,7 @@ class EditQASet extends React.Component {
                       <button
                         type="button"
                         onClick={() =>
-                          arrayHelpers.push({ id: 0, question: "", answer: "" })
+                          arrayHelpers.push({ id: 1, question: "", answer: "" })
                         }
                       >
                         {/* show this when user has removed all friends from the list */}
