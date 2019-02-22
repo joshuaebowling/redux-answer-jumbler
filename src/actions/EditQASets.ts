@@ -47,7 +47,7 @@ export const EditQASets: Actions.IEditQASets = {
   },
   removeQASet: (name: string) => (dispatch: Function) => {
     QuestionAnswer.remove(name);
-
+    console.log("remove", name);
     dispatch({
       type: EditQASets.REMOVE_QASET_REQUEST,
       payload: QuestionAnswer.getNames()

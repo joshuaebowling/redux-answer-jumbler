@@ -27,7 +27,12 @@ class EditQASets extends React.Component {
   renderQASets(qaSets: Array<string>) {
     this.qaSetNames = map(qaSets, qaset => (
       <li key={qaset}>
-        {qaset} <Link to={`/edit/id/${qaset}`}>Edit</Link>
+        {qaset}
+        &nbsp;
+        <button onClick={e => this.props.removeQASet(qaset)}>x</button>
+        &nbsp;
+        <Link to={`/edit/id/${qaset}`}>Edit</Link>
+        &nbsp;
         <Link to={`/qa/${qaset}`}>Practice Set</Link>
       </li>
     ));
