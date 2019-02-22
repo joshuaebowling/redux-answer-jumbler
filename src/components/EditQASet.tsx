@@ -128,7 +128,7 @@ class EditQASet extends React.Component {
                         }
                       >
                         {/* show this when user has removed all friends from the list */}
-                        Add a QuestionAnswer set
+                        Add a QuestionAnswer Pair
                       </button>
                     )}
                     <div>
