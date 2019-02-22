@@ -64,9 +64,10 @@ declare namespace Infrastructure {
   }
 
   interface IEditQASetState {
-    QASetNames: Array<string>;
+    qaSetNames: Array<string>;
     selectedQASet: Models.QuestionAnswerSet;
     isEditing: boolean;
+    nameIsOkay: boolean;
   }
   interface IQuestionAnswerProps {
     collection: Array<Models.VMQuestionAnswer>;
@@ -144,9 +145,11 @@ declare namespace Actions {
     CHECK_NAME_REQUEST: string;
     CHECK_NAME_RESPONSE: string;
     QASET_NAMES_REQUEST: string;
+    REMOVE_QASET_REQUEST: string;
     getQASetNames: () => (dispatch: Function) => void;
     editQASet: (name: string) => (dispatch: Function) => void;
     saveQASet: (item: Models.QuestionAnswerSet) => void;
     checkName: (name: string) => void;
+    removeQASet: (name: string) => void;
   }
 }

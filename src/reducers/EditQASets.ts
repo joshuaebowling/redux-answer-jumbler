@@ -7,7 +7,8 @@ const {
   SAVE_QASET_REQUEST,
   EDIT_QASET_REQUEST,
   CHECK_NAME_REQUEST,
-  CHECK_NAME_RESPONSE
+  CHECK_NAME_RESPONSE,
+  REMOVE_QASET_REQUEST
 } = Actions;
 const initialState: Infrastructure.IEditQASetState = {
   qaSetNames: [],
@@ -33,6 +34,9 @@ export default (
       break;
     case CHECK_NAME_REQUEST:
       stateAddition.nameIsOkay = action.payload;
+      break;
+    case REMOVE_QASET_REQUEST:
+      stateAddition.qaSetNames = action.payload;
       break;
     default:
       break;

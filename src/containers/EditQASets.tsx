@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch: Function) => {
     editQASet: (name: string) => dispatch(Actions.editQASet(name)),
     saveQASet: (item: Models.QuestionAnswerSet) =>
       dispatch(Actions.saveQASet(item)),
-    getQASet: (name: string) => dispatch(Actions.getQASet(name))
+    getQASet: (name: string) => dispatch(Actions.getQASet(name)),
+    removeQASet: (name: string) => dispatch(Actions.removeQASet(name))
   };
 };
 

@@ -8,6 +8,7 @@ export const EditQASets: Actions.IEditQASets = {
   QASET_NAMES_REQUEST: "RETRIEVE_QASET_NAMES",
   CHECK_NAME_REQUEST: "CHECK_NAME_REQUEST",
   CHECK_NAME_RESPONSE: "CHECK_NAME_RESPONSE",
+  REMOVE_QASET_REQUEST: "REMOVE_QASET_REQUEST",
   getQASetNames: () => (dispatch: Function) => {
     dispatch({
       type: EditQASets.QASET_NAMES_REQUEST,
@@ -34,6 +35,7 @@ export const EditQASets: Actions.IEditQASets = {
   checkName: (name: string) => (dispatch: Function) => {
     const nameInUse: boolean = chain(QuestionAnswer.getNames())
       .find((qaName: string) => {
+        console.log(`${name}=${qaName}`);
         return name.toLowerCase() === qaName.toLowerCase();
       })
       .isUndefined()
@@ -41,6 +43,14 @@ export const EditQASets: Actions.IEditQASets = {
     dispatch({
       type: EditQASets.CHECK_NAME_REQUEST,
       payload: nameInUse
+    });
+  },
+  removeQASet: (name: string) => (dispatch: Function) => {
+    QuestionAnswer.remove(name);
+
+    dispatch({
+      type: EditQASets.REMOVE_QASET_REQUEST,
+      payload: QuestionAnswer.getNames()
     });
   }
 };
