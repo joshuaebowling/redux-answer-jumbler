@@ -78,7 +78,10 @@ declare namespace Infrastructure {
   interface IEditQASetsProps {}
   interface IUtilities {
     createViewModel: (model: Models.QuestionAnswer) => Models.QuestionAnswer;
+    // this probably should return a value instead and let the callee figure out what todo
+    // maybe get moved to the service?
     gradeResults: (collection: object, answers: object) => void;
+    createAnswerOrder: (collection: object) => object;
   }
   interface ICollectionNames {
     QuestionAnswer: string;

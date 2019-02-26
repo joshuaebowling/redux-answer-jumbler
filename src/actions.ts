@@ -1,8 +1,7 @@
 /// <reference path="./index.d.ts" />
 import { QuestionAnswer as qaService, sample } from "./services/QuestionAnswer";
-import { map, chain, orderBy, value, fromPairs } from "lodash";
+import { map, chain, orderBy, value, fromPairs, keys, values } from "lodash";
 import utilities from "./Utilities";
-console.log(qaService);
 export const QuestionAnswer: Actions.IQuestionAnswer = {
   COLLECTION_REQUEST: "COLLECTION_REQUEST",
   COLLECTION_RESPONSE: "COLLECTION_RESPONSE",
@@ -17,10 +16,19 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
     dispatch({ type: QuestionAnswer.COLLECTION_REQUEST, payload: null });
     const collection = qaService.find(name);
     // quick and dirty algo to reoder the answers
-    const answerOrder = chain(collection)
+    var answerOrder = chain(collection)
       .orderBy(qa => qa.answer)
       .map(qa => qa.id)
       .value();
+    console.log(answerOrder);
+    var ao = utilities.createAnswerOrder(
+      chain(collection)
+        .keys()
+        .values()
+        .value()
+    );
+    answerOrder = values(ao);
+    console.log(values(ao));
     dispatch({
       type: QuestionAnswer.COLLECTION_RESPONSE,
       payload: {
