@@ -13,6 +13,7 @@ const Utilities: Infrastructure.IUtilities = {
     return viewModel;
   },
   gradeResults: (collection: object, answers: object) => {
+    console.log("answers", answers);
     each(collection, (qa: Models.VMQuestionAnswer) => {
       console.log(qa.id, answers[qa.id]);
       if (qa.id !== answers[qa.id]) {
@@ -35,16 +36,17 @@ const Utilities: Infrastructure.IUtilities = {
       numberSet: Array<number>,
       resultSet: object
     ): object => {
-      var key: number = numberSet[numberSet.length - 1];
-      var availableNumbers: Array<number> = numberSet.map(num => parseInt(num));
+      var key: number = parseInt(numberSet[numberSet.length - 1]) + 1;
+      var availableNumbers: Array<number> = numberSet.map(
+        num => parseInt(num) + 1
+      );
 
       while (numberSet.length > 0) {
         resultSet[key] =
           availableNumbers[getRandomInt(0, availableNumbers.length)];
-        console.log(resultSet[key] + 1);
         numberSet.pop();
         remove(availableNumbers, num => num === resultSet[key]);
-        key = numberSet[numberSet.length - 1];
+        key = parseInt(numberSet[numberSet.length - 1]) + 1;
       }
       return resultSet;
     };

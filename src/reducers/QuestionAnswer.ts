@@ -31,10 +31,12 @@ const applyAnswerToQuestion = (
   answerId: number = -1,
   questionId: number = -1
 ) => {
+  console.log("apply answer to quesiton", answerId, questionId);
   const currentAnswer = answerId === -1 ? state.currentAnswer : answerId;
   const currentQuestion: number =
     questionId === -1 ? state.currentQuestion : questionId;
-  if (currentAnswer !== -1 && currentQuestion !== -1) {
+  if (currentAnswer > -1 && currentQuestion > -1) {
+    console.log("does this ever happen", currentAnswer, currentQuestion);
     stateAddition.results = {
       ...state.results,
       [currentQuestion]: currentAnswer
@@ -62,15 +64,17 @@ export default (
       stateAddition.answerOrder = action.payload.answerOrder;
       break;
     case APPLY_ANSWER_REQUEST:
+      console.log(action.payload);
       stateAddition.currentAnswer = action.payload;
       stateAddition.collection = assign({}, state.collection);
       each(stateAddition.collection, qa => {
+        console.log(qa);
         if (qa.answerAvailability === "selected") {
           qa.answerAvailability = "available";
         }
       });
       stateAddition.collection[action.payload].answerAvailability = "selected";
-      applyAnswerToQuestion(state, stateAddition, action.payload, 0);
+      applyAnswerToQuestion(state, stateAddition, action.payload, -1);
       break;
     case APPLY_ANSWER_RESPONSE:
       break;
@@ -85,7 +89,7 @@ export default (
 
       stateAddition.collection[action.payload].questionAvailability =
         "selected";
-      applyAnswerToQuestion(state, stateAddition, 0, action.payload);
+      applyAnswerToQuestion(state, stateAddition, -1, action.payload);
       break;
     case APPLY_QUESTION_RESPONSE:
       break;
@@ -115,6 +119,7 @@ export default (
       each(state.results, (qid, aid) => {
         if (qid === aid) ++correctCount;
       });
+      console.log(state);
       stateAddition.results = assign({}, state.results);
       stateAddition.collection = assign({}, state.collection);
       gradeResults(stateAddition.collection, stateAddition.results);

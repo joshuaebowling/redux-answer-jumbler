@@ -9,8 +9,9 @@ const QuestionAnswer = ({
 }: ComponentArguments.IQuestionAnswer) => (
   <div
     onClick={() => {
+      console.log("vm", viewModel);
       if (stateClass === ModelAvailability.available) {
-        console.log("available ");
+        console.log(viewModel);
         onSelect(viewModel.id);
       } else {
         console.log("not available");

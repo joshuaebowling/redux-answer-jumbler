@@ -20,15 +20,15 @@ export const QuestionAnswer: Actions.IQuestionAnswer = {
       .orderBy(qa => qa.answer)
       .map(qa => qa.id)
       .value();
-    console.log(answerOrder);
-    var ao = utilities.createAnswerOrder(
-      chain(collection)
-        .keys()
-        .values()
-        .value()
-    );
-    answerOrder = values(ao);
-    console.log(values(ao));
+    const numberSet: Array<number> = chain(collection)
+      .keys()
+      .map(order => {
+        var result = parseInt(order) + 1;
+        return result;
+      })
+      .value();
+    var ao = utilities.createAnswerOrder(numberSet);
+    answerOrder = ao;
     dispatch({
       type: QuestionAnswer.COLLECTION_RESPONSE,
       payload: {

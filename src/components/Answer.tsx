@@ -10,7 +10,7 @@ const Answer = ({
   <div
     onClick={() => {
       if (stateClass === ModelAvailability.available) {
-        console.log("available ");
+        console.log("available ", viewModel);
         onSelect(viewModel.id);
       } else {
         console.log("not available");
