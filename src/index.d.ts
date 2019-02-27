@@ -41,6 +41,8 @@ declare namespace Services {
     update: (item: Models.QuestionAnswerSet) => void;
     remove: (name: string) => void;
     getNames: () => Array<string>;
+    exportSets: () => string;
+    importSets: (jsonSets: string) => void;
   }
 }
 
@@ -149,10 +151,16 @@ declare namespace Actions {
     CHECK_NAME_RESPONSE: string;
     QASET_NAMES_REQUEST: string;
     REMOVE_QASET_REQUEST: string;
+    EXPORT_SETS_REQUEST: string;
+    IMPORT_SETS_REQUEST: string;
+    IMPORT_SETS_RESPONSE: string;
+
     getQASetNames: () => (dispatch: Function) => void;
     editQASet: (name: string) => (dispatch: Function) => void;
     saveQASet: (item: Models.QuestionAnswerSet) => void;
     checkName: (name: string) => void;
     removeQASet: (name: string) => void;
+    exportSets: () => (dispatch: Function) => void;
+    importSets: (name: string) => (dispatch: Function) => void;
   }
 }

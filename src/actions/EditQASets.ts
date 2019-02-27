@@ -9,6 +9,10 @@ export const EditQASets: Actions.IEditQASets = {
   CHECK_NAME_REQUEST: "CHECK_NAME_REQUEST",
   CHECK_NAME_RESPONSE: "CHECK_NAME_RESPONSE",
   REMOVE_QASET_REQUEST: "REMOVE_QASET_REQUEST",
+  EXPORT_SETS_REQUEST: "EXPORT_SETS_REQUEST",
+  IMPORT_SETS_REQUEST: "IMPORT_SETS_REQUEST",
+  IMPORT_SETS_RESPONSE: "IMPORT_SETS_RESPONSE",
+
   getQASetNames: () => (dispatch: Function) => {
     dispatch({
       type: EditQASets.QASET_NAMES_REQUEST,
@@ -52,5 +56,7 @@ export const EditQASets: Actions.IEditQASets = {
       type: EditQASets.REMOVE_QASET_REQUEST,
       payload: QuestionAnswer.getNames()
     });
-  }
+  },
+  exportSets: () => (dispatch: Function) => {},
+  importSets: (jsonSets: string) => (dispatch: Function) => {}
 };

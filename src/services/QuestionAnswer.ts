@@ -30,9 +30,13 @@ export const QuestionAnswer: Services.IQuestionAnswer = {
     name,
     questionAnswers
   }),
-  createQAModel: (id, answer, question) => ({ id, answer, question })
+  createQAModel: (id, answer, question) => ({ id, answer, question }),
+  exportSets: () => {
+    return "export the sets";
+  },
+  importSets: (jsonSets: string) => {}
 };
-const collection: Array<Models.IQuestionAnswer> = [
+const collection: Array<Models.QuestionAnswer> = [
   QuestionAnswer.createQAModel(1, "Proximal", `IDK yet`),
   QuestionAnswer.createQAModel(2, "Inferior", `AAAIDK yet`),
   QuestionAnswer.createQAModel(3, "Anterior", "Toward the Front"),
