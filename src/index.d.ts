@@ -42,7 +42,7 @@ declare namespace Services {
     remove: (name: string) => void;
     getNames: () => Array<string>;
     exportSets: () => string;
-    importSets: (jsonSets: string) => void;
+    importSets: (sets: string) => Promise<object>;
   }
 }
 
@@ -70,6 +70,8 @@ declare namespace Infrastructure {
     selectedQASet: Models.QuestionAnswerSet;
     isEditing: boolean;
     nameIsOkay: boolean;
+    importResult: Response.IQuestionAnswerImport;
+    exportData: string;
   }
   interface IQuestionAnswerProps {
     collection: Array<Models.VMQuestionAnswer>;
@@ -98,6 +100,11 @@ declare namespace Response {
   interface IQuestionAnswerSave {
     success: string;
     nameTaken: string;
+    error: string;
+  }
+  interface IQuestionAnswerImport {
+    added: Array<string>;
+    failed: Array<string>;
     error: string;
   }
 }

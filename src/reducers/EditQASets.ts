@@ -8,13 +8,18 @@ const {
   EDIT_QASET_REQUEST,
   CHECK_NAME_REQUEST,
   CHECK_NAME_RESPONSE,
-  REMOVE_QASET_REQUEST
+  REMOVE_QASET_REQUEST,
+  EXPORT_SETS_REQUEST,
+  IMPORT_SETS_REQUEST,
+  IMPORT_SETS_RESPONSE
 } = Actions;
 const initialState: Infrastructure.IEditQASetState = {
   qaSetNames: [],
   selectedQASet: null,
   isEditing: false,
-  nameIsOkay: false
+  nameIsOkay: false,
+  importResult: null,
+  exportData: null
 };
 
 export default (
@@ -38,6 +43,13 @@ export default (
     case REMOVE_QASET_REQUEST:
       stateAddition.qaSetNames = action.payload;
       break;
+    case EXPORT_SETS_REQUEST:
+      stateAddition.exportData = action.payload;
+      break;
+    case IMPORT_SETS_REQUEST:
+      stateAddition.importResult = action.payload;
+    case IMPORT_SETS_RESPONSE:
+      stateAddition.importResult = action.payload;
     default:
       break;
   }

@@ -51,12 +51,17 @@ export const EditQASets: Actions.IEditQASets = {
   },
   removeQASet: (name: string) => (dispatch: Function) => {
     QuestionAnswer.remove(name);
-    console.log("remove", name);
     dispatch({
       type: EditQASets.REMOVE_QASET_REQUEST,
       payload: QuestionAnswer.getNames()
     });
   },
-  exportSets: () => (dispatch: Function) => {},
-  importSets: (jsonSets: string) => (dispatch: Function) => {}
+  exportSets: () => (dispatch: Function) => {
+    const sets: object = QuestionAnswer.exportSets();
+    dispatch({ type: EditQASets.EXPORT_SETS_REQUEST, payload: sets });
+  },
+  importSets: (sets: string) => (dispatch: Function) => {
+    dispatch({ type: EditQASets.IMPORT_SETS_REQUEST, payload: null });
+    QuestionAnswer.importSets(sets);
+  }
 };

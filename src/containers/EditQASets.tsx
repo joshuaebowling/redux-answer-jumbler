@@ -13,14 +13,15 @@ const mapStateToProps = (state: Infrastructure.IState) => ({
 const mapDispatchToProps = (dispatch: Function) => {
   return {
     getQASetNames: () => {
-      console.log("container getquaswetnames");
       dispatch(Actions.getQASetNames());
     },
     editQASet: (name: string) => dispatch(Actions.editQASet(name)),
     saveQASet: (item: Models.QuestionAnswerSet) =>
       dispatch(Actions.saveQASet(item)),
     getQASet: (name: string) => dispatch(Actions.getQASet(name)),
-    removeQASet: (name: string) => dispatch(Actions.removeQASet(name))
+    removeQASet: (name: string) => dispatch(Actions.removeQASet(name)),
+    importSets: (sets: string) => dispatch(Actions.importSets(sets)),
+    exportSets: () => dispatch(Actions.exportSets())
   };
 };
 
