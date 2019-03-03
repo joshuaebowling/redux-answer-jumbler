@@ -10,6 +10,7 @@ export const EditQASets: Actions.IEditQASets = {
   CHECK_NAME_RESPONSE: "CHECK_NAME_RESPONSE",
   REMOVE_QASET_REQUEST: "REMOVE_QASET_REQUEST",
   EXPORT_SETS_REQUEST: "EXPORT_SETS_REQUEST",
+  CLEAR_EXPORT_REQUEST: "EXPORT_CLEAR_REQUEST",
   IMPORT_SETS_REQUEST: "IMPORT_SETS_REQUEST",
   IMPORT_SETS_RESPONSE: "IMPORT_SETS_RESPONSE",
 
@@ -62,6 +63,12 @@ export const EditQASets: Actions.IEditQASets = {
   },
   importSets: (sets: string) => (dispatch: Function) => {
     dispatch({ type: EditQASets.IMPORT_SETS_REQUEST, payload: null });
-    QuestionAnswer.importSets(sets);
+    const result: Response.IQuestionAnswerImport = QuestionAnswer.importSets(
+      sets
+    );
+    dispatch({ type: EditQASets.IMPORT_SETS_RESPONSE, payload: result });
+  },
+  clearExport: () => (dispatch: Function) => {
+    dispatch({ type: EditQASets.CLEAR_EXPORT_REQUEST, payload: null });
   }
 };

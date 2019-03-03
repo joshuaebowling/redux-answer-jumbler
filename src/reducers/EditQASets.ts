@@ -10,6 +10,7 @@ const {
   CHECK_NAME_RESPONSE,
   REMOVE_QASET_REQUEST,
   EXPORT_SETS_REQUEST,
+  CLEAR_EXPORT_REQUEST,
   IMPORT_SETS_REQUEST,
   IMPORT_SETS_RESPONSE
 } = Actions;
@@ -46,6 +47,8 @@ export default (
     case EXPORT_SETS_REQUEST:
       stateAddition.exportData = action.payload;
       break;
+    case CLEAR_EXPORT_REQUEST:
+      stateAddition.exportData = initialState.exportData;
     case IMPORT_SETS_REQUEST:
       stateAddition.importResult = action.payload;
     case IMPORT_SETS_RESPONSE:

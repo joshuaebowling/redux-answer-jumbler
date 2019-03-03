@@ -7,7 +7,8 @@ import { EditQASets as Actions } from "../actions/EditQASets";
 const mapStateToProps = (state: Infrastructure.IState) => ({
   QASetNames: state.editQASets.qaSetNames,
   selectedQASet: state.editQASets.selectedQASet,
-  isEditing: state.editQASets.isEditing
+  isEditing: state.editQASets.isEditing,
+  exportData: state.editQASets.exportData
 });
 
 const mapDispatchToProps = (dispatch: Function) => {

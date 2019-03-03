@@ -2,7 +2,7 @@
 import React from "react";
 import { ModelAvailability } from "../constants";
 
-const QuestionAnswer = ({
+const Question = ({
   viewModel,
   onSelect,
   stateClass
@@ -23,4 +23,4 @@ const QuestionAnswer = ({
   </div>
 );
 
-export default QuestionAnswer;
+export default Question;

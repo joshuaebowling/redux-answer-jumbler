@@ -159,15 +159,16 @@ declare namespace Actions {
     QASET_NAMES_REQUEST: string;
     REMOVE_QASET_REQUEST: string;
     EXPORT_SETS_REQUEST: string;
+    CLEAR_EXPORT_REQUEST: string;
     IMPORT_SETS_REQUEST: string;
     IMPORT_SETS_RESPONSE: string;
-
     getQASetNames: () => (dispatch: Function) => void;
     editQASet: (name: string) => (dispatch: Function) => void;
     saveQASet: (item: Models.QuestionAnswerSet) => void;
     checkName: (name: string) => void;
     removeQASet: (name: string) => void;
     exportSets: () => (dispatch: Function) => void;
+    clearExport: () => (dispatch: Function) => void;
     importSets: (name: string) => (dispatch: Function) => void;
   }
 }
