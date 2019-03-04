@@ -10,6 +10,8 @@ import QuestionAnswerComponent from "./containers/QuestionAnswer";
 import About from "./components/About";
 import EditQASets from "./containers/EditQASets";
 import EditQASet from "../src/containers/EditQASet";
+import Export from "./containers/Export";
+
 import "./styles.css";
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
             <Route path={`/qa/:name`} component={QuestionAnswerComponent} />
           </div>
         </Router>
+        <Export />
       </Provider>
     </div>
   );

@@ -5,11 +5,11 @@ import { Link, Route } from "react-router-dom";
 import { map } from "lodash";
 
 import EditQASet from "../containers/EditQASet";
-import Export from "../containers/Export";
 
 class EditQASets extends React.Component {
   constructor(props: ComponentArguments.IQASets) {
     super(props);
+    console.log(props);
     props.getQASetNames();
   }
   componentWillUpdate(state: Infrastructure.IEditQASetState) {
@@ -19,10 +19,10 @@ class EditQASets extends React.Component {
     return (
       <div>
         <h1>Manage QuestionAnswer Sets</h1>
-        <Link to="/export">Export</Link>
+        <button onClick={this.props.exportSets}>Export</button>
         <Link to={`/edit/id/0`}>Add New</Link>
+
         <ul> {this.qaSetNames}</ul>
-        <Route path="/export" component={Export} />
       </div>
     );
   }
