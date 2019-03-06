@@ -20,7 +20,8 @@ const initialState: Infrastructure.IEditQASetState = {
   isEditing: false,
   nameIsOkay: false,
   importResult: null,
-  exportData: null
+  exportData: null,
+  showImport: false
 };
 
 export default (

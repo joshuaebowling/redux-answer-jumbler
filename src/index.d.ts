@@ -72,6 +72,7 @@ declare namespace Infrastructure {
     nameIsOkay: boolean;
     importResult: Response.IQuestionAnswerImport;
     exportData: string;
+    showImport: boolean;
   }
   interface IQuestionAnswerProps {
     collection: Array<Models.VMQuestionAnswer>;

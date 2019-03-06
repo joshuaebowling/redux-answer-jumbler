@@ -4,6 +4,8 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Formik, FieldArray, Form, Field } from "formik";
 import { assign, keys } from "lodash";
+import { Modal, Button } from "react-bootstrap";
+
 const newQASet: Models.QuestionAnswerSet = {
   name: "",
   questionAnswers: []
@@ -27,10 +29,19 @@ class EditQASet extends React.Component {
     if (!this.QASet) return <h3>loading</h3>;
     return (
       <div>
-        <h6>
-          There's no validation on this form so if you want to pass hacky data
-          into your localstorage then be my guest.
-        </h6>
+        <div>
+          <h6>
+            There's no validation on this form so if you want to pass hacky data
+            into your localstorage then be my guest.
+          </h6>
+          <h6>
+            Also, please use unique values for every question and every answer.
+            If you don't it'll be hard to tell which is which. The form plugin I
+            used (Formik) doesn't seem to support validation. If I try to define
+            validation for FieldArray it fires for every row, one after the
+            other.
+          </h6>
+        </div>
         <Formik
           initialValues={{
             name: this.QASet.name,
