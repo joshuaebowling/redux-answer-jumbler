@@ -1,6 +1,6 @@
 /// <reference path="../index.d.ts" />
 import Basil from "basil.js";
-import { map } from "lodash";
+import { map, each, keys, intersection, difference } from "lodash";
 const store = new Basil({
   namespace: "QuestionAnswerJumbler",
   storages: ["cookie", "local"],
@@ -32,13 +32,35 @@ export const QuestionAnswer: Services.IQuestionAnswer = {
   }),
   createQAModel: (id, answer, question) => ({ id, answer, question }),
   exportSets: () => {
-    return "export the sets";
+    const result: Array = map(QuestionAnswer.getNames(), name => ({
+      [name]: QuestionAnswer.find(name)
+    }));
+    return JSON.stringify(result);
   },
-  importSets: (jsonSets: string) => {}
+  importSets: (jsonSets: string) => {
+    const result: Response.IQuestionAnswerImport = {
+      added: [],
+      failed: [],
+      error: null
+    };
+    var sets: object;
+    try {
+      sets = JSON.parse(jsonSets);
+    } catch {
+      result.error = "Parsing JSON Failed";
+    }
+    const importSetNames: Array<string> = keys(sets);
+    const currentSetNames: Array<string> = QuestionAnswer.getNames();
+    result.failed = intersection(importSetNames);
+
+    each(sets, (set, name) => {
+      console.log(name, set);
+    });
+  }
 };
 const collection: Array<Models.QuestionAnswer> = [
-  QuestionAnswer.createQAModel(1, "Proximal", `IDK yet`),
-  QuestionAnswer.createQAModel(2, "Inferior", `AAAIDK yet`),
+  QuestionAnswer.createQAModel(1, "Proximal", `Nearer to the center`),
+  QuestionAnswer.createQAModel(2, "Inferior", `Toward the Bottom`),
   QuestionAnswer.createQAModel(3, "Anterior", "Toward the Front"),
   QuestionAnswer.createQAModel(4, "Posterior", "Toward the Back"),
   QuestionAnswer.createQAModel(5, "Median", "On the Midline"),

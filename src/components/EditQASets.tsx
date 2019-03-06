@@ -9,7 +9,6 @@ import EditQASet from "../containers/EditQASet";
 class EditQASets extends React.Component {
   constructor(props: ComponentArguments.IQASets) {
     super(props);
-    console.log(props);
     props.getQASetNames();
   }
   componentWillUpdate(state: Infrastructure.IEditQASetState) {
@@ -20,6 +19,7 @@ class EditQASets extends React.Component {
       <div>
         <h1>Manage QuestionAnswer Sets</h1>
         <button onClick={this.props.exportSets}>Export</button>
+        <button onClick={this.props.importSets}>Import</button>
         <Link to={`/edit/id/0`}>Add New</Link>
 
         <ul> {this.qaSetNames}</ul>

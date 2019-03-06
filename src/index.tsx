@@ -11,6 +11,7 @@ import About from "./components/About";
 import EditQASets from "./containers/EditQASets";
 import EditQASet from "../src/containers/EditQASet";
 import Export from "./containers/Export";
+import Import from "./containers/Import";
 
 import "./styles.css";
 function App() {
@@ -32,6 +33,7 @@ function App() {
           </div>
         </Router>
         <Export />
+        <Import />
       </Provider>
     </div>
   );
