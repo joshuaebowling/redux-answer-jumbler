@@ -12,7 +12,8 @@ const {
   EXPORT_SETS_REQUEST,
   CLEAR_EXPORT_REQUEST,
   IMPORT_SETS_REQUEST,
-  IMPORT_SETS_RESPONSE
+  IMPORT_SETS_RESPONSE,
+  SHOW_IMPORT_SETS
 } = Actions;
 const initialState: Infrastructure.IEditQASetState = {
   qaSetNames: [],
@@ -54,6 +55,8 @@ export default (
       stateAddition.importResult = action.payload;
     case IMPORT_SETS_RESPONSE:
       stateAddition.importResult = action.payload;
+    case SHOW_IMPORT_SETS:
+      stateAddition.showImport = !state.showImport;
     default:
       break;
   }

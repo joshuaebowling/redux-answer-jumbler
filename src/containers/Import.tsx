@@ -5,7 +5,6 @@ import Import from "../components/Import";
 import { EditQASets as Actions } from "../actions/EditQASets";
 
 const mapStateToProps = (state: Infrastructure.IState) => {
-  console.log("fired");
   return {
     importResult: state.editQASets.importResult,
     showImport: state.editQASets.showImport
@@ -13,7 +12,8 @@ const mapStateToProps = (state: Infrastructure.IState) => {
 };
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    dismiss: () => dispatch(Actions.clearImport())
+    dismiss: () => dispatch(Actions.showImport()),
+    import: (jsonSets: string) => dispatch(Actions.importSets(jsonSets))
   };
 };
 
