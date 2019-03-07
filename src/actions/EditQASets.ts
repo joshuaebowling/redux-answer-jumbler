@@ -67,6 +67,7 @@ export const EditQASets: Actions.IEditQASets = {
       sets
     );
     dispatch({ type: EditQASets.IMPORT_SETS_RESPONSE, payload: result });
+    EditQASets.getQASetNames()(dispatch);
   },
   clearExport: () => (dispatch: Function) =>
     dispatch({ type: EditQASets.CLEAR_EXPORT_REQUEST, payload: null }),
