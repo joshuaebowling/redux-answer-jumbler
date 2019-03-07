@@ -161,6 +161,7 @@ declare namespace Actions {
     REMOVE_QASET_REQUEST: string;
     EXPORT_SETS_REQUEST: string;
     CLEAR_EXPORT_REQUEST: string;
+    SHOW_IMPORT_SETS: string;
     IMPORT_SETS_REQUEST: string;
     IMPORT_SETS_RESPONSE: string;
     getQASetNames: () => (dispatch: Function) => void;
@@ -171,5 +172,6 @@ declare namespace Actions {
     exportSets: () => (dispatch: Function) => void;
     clearExport: () => (dispatch: Function) => void;
     importSets: (name: string) => (dispatch: Function) => void;
+    showImport: () => (dispatch: Function) => void;
   }
 }

@@ -13,7 +13,7 @@ export const EditQASets: Actions.IEditQASets = {
   CLEAR_EXPORT_REQUEST: "EXPORT_CLEAR_REQUEST",
   IMPORT_SETS_REQUEST: "IMPORT_SETS_REQUEST",
   IMPORT_SETS_RESPONSE: "IMPORT_SETS_RESPONSE",
-
+  SHOW_IMPORT_SETS: "SHOW_IMPORT_SETS",
   getQASetNames: () => (dispatch: Function) => {
     dispatch({
       type: EditQASets.QASET_NAMES_REQUEST,
@@ -68,7 +68,8 @@ export const EditQASets: Actions.IEditQASets = {
     );
     dispatch({ type: EditQASets.IMPORT_SETS_RESPONSE, payload: result });
   },
-  clearExport: () => (dispatch: Function) => {
-    dispatch({ type: EditQASets.CLEAR_EXPORT_REQUEST, payload: null });
-  }
+  clearExport: () => (dispatch: Function) =>
+    dispatch({ type: EditQASets.CLEAR_EXPORT_REQUEST, payload: null }),
+  showImport: () => (dispatch: Function) =>
+    dispatch({ type: EditQASets.SHOW_IMPORT_SETS, payload: null })
 };
