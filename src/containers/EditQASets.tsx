@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch: Function) => {
     getQASet: (name: string) => dispatch(Actions.getQASet(name)),
     removeQASet: (name: string) => dispatch(Actions.removeQASet(name)),
     importSets: (sets: string) => dispatch(Actions.importSets(sets)),
+    showImport: () => dispatch(Actions.showImport()),
     exportSets: () => dispatch(Actions.exportSets())
   };
 };

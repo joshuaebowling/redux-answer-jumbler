@@ -1,6 +1,14 @@
 /// <reference path="../index.d.ts" />
 import Basil from "basil.js";
-import { map, each, keys, intersection, difference } from "lodash";
+import {
+  chain,
+  map,
+  each,
+  keys,
+  intersection,
+  difference,
+  toObject
+} from "lodash";
 const store = new Basil({
   namespace: "QuestionAnswerJumbler",
   storages: ["cookie", "local"],
@@ -43,6 +51,7 @@ export const QuestionAnswer: Services.IQuestionAnswer = {
       failed: [],
       error: null
     };
+    console.log(jsonSets);
     var sets: object;
     try {
       sets = JSON.parse(jsonSets);
@@ -52,10 +61,19 @@ export const QuestionAnswer: Services.IQuestionAnswer = {
     const importSetNames: Array<string> = keys(sets);
     const currentSetNames: Array<string> = QuestionAnswer.getNames();
     result.failed = intersection(importSetNames);
-
     each(sets, (set, name) => {
-      console.log(name, set);
+      var name: string = chain(set)
+        .keys()
+        .first()
+        .value();
+      var toAdd: Models.QuestionAnswerSet = {
+        name,
+        questionAnswers: set[name]
+      };
+      QuestionAnswer.update(toAdd);
+      result.added.push(name);
     });
+    return result;
   }
 };
 const collection: Array<Models.QuestionAnswer> = [
