@@ -14,9 +14,7 @@ const About = () => (
     </p>
     <h3>Coming Soon...</h3>
     <ol>
-      <li>Add/Edit question/answer lists (TESTING)</li>
-      <li>Scoring Information</li>
-      <li>backup/export lists</li>
+      <li>backup/export lists IN PROGRESS</li>
     </ol>
   </div>
 );
